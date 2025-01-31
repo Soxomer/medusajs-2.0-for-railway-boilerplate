@@ -6,7 +6,7 @@ import {
   ProviderFileResultDTO,
   ProviderGetFileDTO
 } from '@medusajs/framework/types';
-import { Client } from 'minio';
+import { Client,ClientOptions } from 'minio';
 import path from 'path';
 import { ulid } from 'ulid';
 
@@ -14,57 +14,47 @@ type InjectedDependencies = {
   logger: Logger
 }
 
-interface MinioServiceConfig {
-  endPoint: string
-  accessKey: string
-  secretKey: string
+interface MinioServiceConfig extends ClientOptions {
   bucket?: string
 }
 
-export interface MinioFileProviderOptions {
-  endPoint: string
-  accessKey: string
-  secretKey: string
-  bucket?: string
-}
 
 const DEFAULT_BUCKET = 'medusa-media'
 
 /**
  * Service to handle file storage using MinIO.
  */
-class MinioFileProviderService extends AbstractFileProviderService {
+export default class MinioFileProviderService extends AbstractFileProviderService {
   static identifier = 'minio-file'
+  protected readonly bucket: string
   protected readonly config_: MinioServiceConfig
   protected readonly logger_: Logger
-  protected client: Client
-  protected readonly bucket: string
+  protected client_: Client
 
-  constructor({ logger }: InjectedDependencies, options: MinioFileProviderOptions) {
-    super()
-    this.logger_ = logger
-    this.config_ = {
-      endPoint: options.endPoint,
-      accessKey: options.accessKey,
-      secretKey: options.secretKey,
-      bucket: options.bucket
+  constructor({ logger }: InjectedDependencies, options: MinioServiceConfig) {
+    if (!options) {
+      throw new MedusaError(MedusaError.Types.INVALID_DATA, 'No options provided for MinioFileProviderService')
     }
 
+    super()
+    this.logger_ = logger
+    this.config_ = options
+
     // Use provided bucket or default
-    this.bucket = this.config_.bucket || DEFAULT_BUCKET
+    this.bucket = this.config_.bucket ?? DEFAULT_BUCKET
     this.logger_.info(`MinIO service initialized with bucket: ${this.bucket}`)
 
     // Initialize Minio client with hardcoded SSL settings
-    this.client = new Client({
+    this.client_ = new Client({
       endPoint: this.config_.endPoint,
-      port: 443,
-      useSSL: true,
+      port: this.config_.port,
+      useSSL: this.config_.useSSL,
       accessKey: this.config_.accessKey,
       secretKey: this.config_.secretKey
     })
 
     // Initialize bucket and policy
-    this.initializeBucket().catch(error => {
+    this.initBucket().catch(error => {
       this.logger_.error(`Failed to initialize MinIO bucket: ${error.message}`)
     })
   }
@@ -72,6 +62,7 @@ class MinioFileProviderService extends AbstractFileProviderService {
   static validateOptions(options: Record<string, any>) {
     const requiredFields = [
       'endPoint',
+      'port',
       'accessKey',
       'secretKey'
     ]
@@ -86,58 +77,51 @@ class MinioFileProviderService extends AbstractFileProviderService {
     })
   }
 
-  private async initializeBucket(): Promise<void> {
+  protected async initBucket(): Promise<void> {
+    const bucketName = this.config_.bucket || DEFAULT_BUCKET
+    console.log(`Attempting to initialize bucket: ${bucketName}`)
     try {
-      // Check if bucket exists
-      const bucketExists = await this.client.bucketExists(this.bucket)
-      
-      if (!bucketExists) {
-        // Create the bucket
-        await this.client.makeBucket(this.bucket)
-        this.logger_.info(`Created bucket: ${this.bucket}`)
-
-        // Set bucket policy to allow public read access
-        const policy = {
-          Version: '2012-10-17',
-          Statement: [
-            {
-              Sid: 'PublicRead',
-              Effect: 'Allow',
-              Principal: '*',
-              Action: ['s3:GetObject'],
-              Resource: [`arn:aws:s3:::${this.bucket}/*`]
-            }
-          ]
-        }
-
-        await this.client.setBucketPolicy(this.bucket, JSON.stringify(policy))
-        this.logger_.info(`Set public read policy for bucket: ${this.bucket}`)
+      const exists = await this.client_.bucketExists(bucketName)
+      this.logger_.info(`Bucket exists skip creation`)
+      if (!exists) {
+        this.logger_.info(`Creating bucket: ${bucketName}`)
+        await this.client_.makeBucket(bucketName)
+        this.logger_.info(`Setting bucket policy for: ${bucketName}`)
+        await this.setBucketPolicy(bucketName)
       } else {
-        this.logger_.info(`Using existing bucket: ${this.bucket}`)
+        this.logger_.info(`Using existing bucket: ${bucketName}`)
         
         // Verify/update policy on existing bucket
         try {
-          const policy = {
-            Version: '2012-10-17',
-            Statement: [
-              {
-                Sid: 'PublicRead',
-                Effect: 'Allow',
-                Principal: '*',
-                Action: ['s3:GetObject'],
-                Resource: [`arn:aws:s3:::${this.bucket}/*`]
-              }
-            ]
-          }
-          await this.client.setBucketPolicy(this.bucket, JSON.stringify(policy))
-          this.logger_.info(`Updated public read policy for existing bucket: ${this.bucket}`)
+          await this.setBucketPolicy(bucketName)
+          this.logger_.info(`Updated public read policy for existing bucket: ${bucketName}`)
         } catch (policyError) {
           this.logger_.warn(`Failed to update policy for existing bucket: ${policyError.message}`)
         }
       }
     } catch (error) {
-      this.logger_.error(`Error initializing bucket: ${error.message}`)
-      throw error
+      console.error(`MinIO error details:`, error)
+      throw new Error(`Failed to initialize MinIO bucket: ${error.message}`)
+    }
+  }
+
+  protected async setBucketPolicy(bucketName: string): Promise<void> {
+    try {
+      const policy = {
+        Version: '2012-10-17',
+        Statement: [
+          {
+            Sid: 'PublicRead',
+            Effect: 'Allow',
+            Principal: '*',
+            Action: ['s3:GetObject'],
+            Resource: [`arn:aws:s3:::${bucketName}/*`]
+          }
+        ]
+      }
+      await this.client_.setBucketPolicy(bucketName, JSON.stringify(policy))
+    } catch (error) {
+      throw new Error(`Failed to set bucket policy: ${error.message}`)
     }
   }
 
@@ -164,7 +148,7 @@ class MinioFileProviderService extends AbstractFileProviderService {
       const content = Buffer.from(file.content, 'binary')
 
       // Upload file with public-read access
-      await this.client.putObject(
+      await this.client_.putObject(
         this.bucket,
         fileKey,
         content,
@@ -205,7 +189,7 @@ class MinioFileProviderService extends AbstractFileProviderService {
     }
 
     try {
-      await this.client.removeObject(this.bucket, fileData.fileKey)
+      await this.client_.removeObject(this.bucket, fileData.fileKey)
       this.logger_.info(`Successfully deleted file ${fileData.fileKey} from MinIO bucket ${this.bucket}`)
     } catch (error) {
       // Log error but don't throw if file doesn't exist
@@ -224,7 +208,7 @@ class MinioFileProviderService extends AbstractFileProviderService {
     }
 
     try {
-      const url = await this.client.presignedGetObject(
+      const url = await this.client_.presignedGetObject(
         this.bucket,
         fileData.fileKey,
         24 * 60 * 60 // URL expires in 24 hours
@@ -240,5 +224,3 @@ class MinioFileProviderService extends AbstractFileProviderService {
     }
   }
 }
-
-export default MinioFileProviderService

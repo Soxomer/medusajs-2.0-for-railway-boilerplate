@@ -8,6 +8,7 @@ The module requires the following environment variables:
 
 ```env
 MINIO_ENDPOINT=your-minio-endpoint
+MINIO_PORT=your-minio-port
 MINIO_ACCESS_KEY=your-access-key
 MINIO_SECRET_KEY=your-secret-key
 MINIO_BUCKET=your-bucket-name  # Optional, defaults to 'medusa-media'
