@@ -1,0 +1,27 @@
+meta {
+  name: Register Vendor
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/vendors
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+      "name": "Acme",
+      "handle": "acme",
+      "admin": {
+          "email": "test@test.com",
+          "first_name": "Admin",
+          "last_name": "Acme"
+      }
+  }
+}

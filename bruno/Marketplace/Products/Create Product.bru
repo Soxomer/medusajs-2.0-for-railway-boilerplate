@@ -1,0 +1,45 @@
+meta {
+  name: Create Product
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/vendors/products
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "title": "T-dqqdsgd",
+    "status": "published",
+    "options": [
+      {
+        "title": "Color",
+        "values": [
+          "Blue"
+        ]
+      }
+    ],
+    "variants": [
+      {
+        "title": "T-Shirt",
+        "prices": [
+          {
+            "currency_code": "eur",
+            "amount": 10
+          }
+        ],
+        "manage_inventory": false,
+        "options": {
+          "Color": "Blue"
+        }
+      }
+    ]
+  }
+}
