@@ -1,0 +1,113 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    volumes:
+      - ..:/app:cached
+    ports:
+      - "8000:8000" # frontend
+      - "9000:9000" # backend
+    env_file:
+      - ../storefront/.env.local
+      - ../backend/.env
+
+  # backend:
+  #   container_name: ${COMPOSE_PROJECT_NAME:-medusa}-backend
+  #   build:
+  #     context: ../backend
+  #     dockerfile: Dockerfile.dev
+  #     target: development
+  #   volumes:
+  #     - ./backend:/app/backend
+  #     - /app/backend/node_modules
+  #   env_file:
+  #     - ../backend/.env
+  #   ports:
+  #     - "9000:9000"
+  #   depends_on:
+
+  #     postgres:
+  #       condition: service_healthy
+  #     redis:
+  #       condition: service_started
+  #     # meilisearch:
+  #     #   condition: service_started
+  #     minio:
+  #       condition: service_started
+  #   profiles:
+  #     - full
+  #     - backend
+
+  # frontend:
+  #   container_name: ${COMPOSE_PROJECT_NAME:-medusa}-frontend
+  #   build:
+  #     context: ../storefront
+  #     dockerfile: Dockerfile.dev
+  #     target: development
+  #   volumes:
+  #     - ../storefront:/app/storefront:rw
+  #   env_file:
+  #     - ../storefront/.env.local
+  #   ports:
+
+  #     - "8000:8000"
+  #   depends_on:
+
+  #     - backend
+  #   profiles:
+  #     - full
+  #     - frontend
+
+  postgres:
+    container_name: ${COMPOSE_PROJECT_NAME:-medusa}-postgres
+    image: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    env_file:
+      - ../backend/.env
+
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    container_name: ${COMPOSE_PROJECT_NAME:-medusa}-redis
+    image: redis
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6379:6379"
+
+  minio:
+    container_name: ${COMPOSE_PROJECT_NAME:-medusa}-minio
+    image: minio/minio:latest
+    command: server /data --console-address ":9001"
+    volumes:
+      - minio_data:/data
+    env_file:
+      - ../backend/.env
+    ports:
+      - "9100:9100"
+      - "9001:9001"
+
+  # meilisearch:
+  #   container_name: ${COMPOSE_PROJECT_NAME:-medusa}-meilisearch
+  #   image: getmeili/meilisearch:latest
+  #   volumes:
+  #     - meili_data:/meili_data
+  #   env_file:
+  #     - ../backend/.env
+  #   ports:
+  #     - "7700:7700"
+
+volumes:
+  postgres_data:
+  redis_data:
+  minio_data:
+  # meili_data:

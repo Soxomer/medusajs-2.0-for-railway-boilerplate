@@ -218,7 +218,7 @@ const modules = [
   ...getRedisModules(),
   ...getNotificationModule(),
   ...getPaymentModule(),
-  ...getSearchModule(),
+  // ...getSearchModule(),
   ...getMarketplaceModule(),
 ];
 

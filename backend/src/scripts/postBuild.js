@@ -28,4 +28,4 @@ console.log("Installing dependencies in .medusa/server...");
 execSync("npm ci", {
   cwd: MEDUSA_SERVER_PATH,
   stdio: "inherit",
-});
+})

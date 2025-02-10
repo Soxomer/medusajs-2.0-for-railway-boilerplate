@@ -1,15 +1,20 @@
 /**
  * Assert that a value is not undefined. If it is, throw an error with the provided message.
- * @param v - Value to assert
- * @param errorMessage - Error message to throw if value is undefined
+ * @param value - Value to assert
+ * @param message - Error message to throw if value is undefined
+ * @param level - Level of error to throw ('error' or 'warn')
  */
-export function assertValue<T extends string | undefined>(
-  v: T | undefined,
-  errorMessage: string,
+export function assertValue<T>(
+  value: T | undefined | null,
+  message: string,
+  level: 'error' | 'warn' = 'error'
 ): T {
-  if (v === undefined) {
-    throw new Error(errorMessage)
+  if (value === undefined || value === null) {
+    if (level === 'error') {
+      throw new Error(message)
+    } else {
+      console.warn(message)
+    }
   }
-
-  return v
+  return value
 }

@@ -1,2 +1,11 @@
 {
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "driver": "PostgreSQL",
+            "name": "Medusa",
+            "connectString": "postgresql://postgres:postgres@postgres:5432/medusa-db"
+        }
+    ]
 }

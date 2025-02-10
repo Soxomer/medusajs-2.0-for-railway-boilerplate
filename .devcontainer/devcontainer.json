@@ -1,0 +1,95 @@
+{
+  "name": "Medusa Development",
+  "dockerComposeFile": "./docker-compose.yml",
+  "service": "app",
+  "runServices": ["app","redis","postgres","minio"],
+  "workspaceFolder": "/app",
+
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "configureZshAsDefaultShell": true
+    }  
+  },    
+
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "editor.fontFamily": "AnySphere, monospace",
+        "editor.fontLigatures": true,
+        "editor.fontWeight": "normal",
+        "editor.fontSize": 14,
+        "editor.lineHeight": 20,
+        "editor.tabSize": 2,
+        "editor.tabCompletion": "on",
+        "editor.formatOnSave": true,
+        "editor.formatOnPaste": true,
+        "editor.formatOnType": true,
+        "editor.formatOnSaveMode": "modifications",
+        "editor.formatOnSaveOptions": {
+          "tabSize": 2,
+          "insertSpaces": true,
+          "trimAutoWhitespace": true,
+          "trimFinalNewlines": true,
+          "trimTrailingWhitespace": true
+        },
+        "editor.codeActionsOnSave": {
+          "source.fixAll": "explicit",
+          "source.organizeImports": "explicit"
+        },
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+      },
+
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "mikestead.dotenv",
+        "cweijan.dbclient-jdbc",
+        "kisstkondoros.vscode-gutter-preview",
+        "ms-vsliveshare.vsliveshare",
+        "christian-kohler.npm-intellisense",
+        "christian-kohler.path-intellisense",
+        "MrChetan.phpstorm-parameter-hints-in-vscode",
+        "cweijan.vscode-postgresql-client2",
+        "bruno-api-client.bruno",
+        "formulahendry.auto-close-tag",
+        "Cardinal90.multi-cursor-case-preserve",
+        "chrmarti.regex",
+        "bradlc.vscode-tailwindcss",
+        "stivo.tailwind-fold",
+        "rangav.vscode-thunder-client",
+        "Gruntfuggly.todo-tree",
+        "tomoki1207.pdf",
+        "redhat.vscode-yaml",
+        "usernamehw.errorlens",
+        "PKief.material-icon-theme",
+        "vscode.theme-anysphere",
+        "piousdeer.adwaita-theme",
+        "anysphere.pyright",
+        "pnp.polacode",
+        "ms-azuretools.vscode-docker"
+      ]
+    }
+  },
+  "portsAttributes": {
+    "5432": {
+      "label": "postgres"
+    },
+    "6379": {
+      "label": "redis"
+    },
+    "8000": {
+      "label": "frontend"
+    },
+    "9000": {
+      "label": "backend"
+    },
+    "9001": {
+      "label": "minio-console"
+    },
+    "9100": {
+      "label": "minio"
+    }
+  },
+  
+  "forwardPorts": [9000,8000,5432,6379,9100,9001]
+}
