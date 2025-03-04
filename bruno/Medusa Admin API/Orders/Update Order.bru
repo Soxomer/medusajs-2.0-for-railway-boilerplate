@@ -1,0 +1,56 @@
+meta {
+  name: Update Order
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/admin/orders/:id
+  body: json
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+params:path {
+  id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "email": "",
+    "shipping_address": {
+      "first_name": "",
+      "last_name": "",
+      "phone": "",
+      "company": "",
+      "address_1": "",
+      "address_2": "",
+      "city": "",
+      "country_code": "",
+      "province": "",
+      "postal_code": "",
+      "metadata": {}
+    },
+    "billing_address": {
+      "first_name": "",
+      "last_name": "",
+      "phone": "",
+      "company": "",
+      "address_1": "",
+      "address_2": "",
+      "city": "",
+      "country_code": "",
+      "province": "",
+      "postal_code": "",
+      "metadata": {}
+    },
+    "metadata": {}
+  }
+}

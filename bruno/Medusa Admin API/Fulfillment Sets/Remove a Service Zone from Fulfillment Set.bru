@@ -1,0 +1,20 @@
+meta {
+  name: Remove a Service Zone from Fulfillment Set
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{baseUrl}}/admin/fulfillment-sets/:id/service-zones/:zone_id
+  body: none
+  auth: bearer
+}
+
+params:path {
+  id: 
+  zone_id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

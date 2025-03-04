@@ -1,0 +1,24 @@
+meta {
+  name: Update a Product-s Option
+  type: http
+  seq: 13
+}
+
+post {
+  url: {{baseUrl}}/admin/products/:id/options/:option_id
+  body: json
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+params:path {
+  id: 
+  option_id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

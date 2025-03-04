@@ -1,0 +1,26 @@
+meta {
+  name: Create Customer Group
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/admin/customer-groups
+  body: json
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "name": "",
+    "metadata": {}
+  }
+}

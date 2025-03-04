@@ -1,0 +1,33 @@
+meta {
+  name: Add Outbound Shipping Method to Exchange
+  type: http
+  seq: 14
+}
+
+post {
+  url: {{baseUrl}}/admin/exchanges/:id/outbound/shipping-method
+  body: json
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+params:path {
+  id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "shipping_option_id": "",
+    "custom_amount": "",
+    "description": "",
+    "internal_note": "",
+    "metadata": {}
+  }
+}

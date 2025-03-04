@@ -1,0 +1,168 @@
+meta {
+  name: Manage Products
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/admin/products/batch
+  body: json
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "create": [
+      {
+        "title": "",
+        "subtitle": "",
+        "description": "",
+        "is_giftcard": "",
+        "discountable": "",
+        "images": [
+          {
+            "url": ""
+          }
+        ],
+        "thumbnail": "",
+        "handle": "",
+        "status": "",
+        "type_id": "",
+        "collection_id": "",
+        "categories": [
+          {
+            "id": ""
+          }
+        ],
+        "tags": [
+          {
+            "id": ""
+          }
+        ],
+        "options": [
+          {
+            "title": "",
+            "values": []
+          }
+        ],
+        "variants": [
+          {
+            "title": "",
+            "sku": "",
+            "ean": "",
+            "upc": "",
+            "barcode": "",
+            "hs_code": "",
+            "mid_code": "",
+            "allow_backorder": "",
+            "manage_inventory": "",
+            "variant_rank": "",
+            "weight": "",
+            "length": "",
+            "height": "",
+            "width": "",
+            "origin_country": "",
+            "material": "",
+            "metadata": {},
+            "prices": [
+              {
+                "currency_code": "",
+                "amount": "",
+                "min_quantity": "",
+                "max_quantity": "",
+                "rules": {
+                  "region_id": ""
+                }
+              }
+            ],
+            "options": {},
+            "inventory_items": [
+              {
+                "inventory_item_id": "",
+                "required_quantity": ""
+              }
+            ]
+          }
+        ],
+        "sales_channels": [
+          {
+            "id": ""
+          }
+        ],
+        "weight": "",
+        "length": "",
+        "height": "",
+        "width": "",
+        "hs_code": "",
+        "mid_code": "",
+        "origin_country": "",
+        "material": "",
+        "metadata": {},
+        "external_id": "",
+        "shipping_profile_id": ""
+      }
+    ],
+    "update": [
+      {
+        "title": "",
+        "subtitle": "",
+        "description": "",
+        "is_giftcard": "",
+        "discountable": "",
+        "images": [
+          {
+            "url": ""
+          }
+        ],
+        "thumbnail": "",
+        "handle": "",
+        "status": "",
+        "type_id": "",
+        "collection_id": "",
+        "categories": [
+          {
+            "id": ""
+          }
+        ],
+        "tags": [
+          {
+            "id": ""
+          }
+        ],
+        "options": [
+          {
+            "title": "",
+            "values": []
+          }
+        ],
+        "variants": [],
+        "sales_channels": [
+          {
+            "id": ""
+          }
+        ],
+        "weight": "",
+        "length": "",
+        "height": "",
+        "width": "",
+        "hs_code": "",
+        "mid_code": "",
+        "origin_country": "",
+        "material": "",
+        "metadata": {},
+        "external_id": "",
+        "id": "",
+        "shipping_profile_id": ""
+      }
+    ],
+    "delete": []
+  }
+}

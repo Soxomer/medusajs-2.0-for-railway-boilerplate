@@ -1,0 +1,31 @@
+meta {
+  name: Start Return Receival
+  type: http
+  seq: 9
+}
+
+post {
+  url: {{baseUrl}}/admin/returns/:id/receive
+  body: json
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+params:path {
+  id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "internal_note": "",
+    "description": "",
+    "metadata": {}
+  }
+}

@@ -1,0 +1,29 @@
+meta {
+  name: Mark a Payment Collection as Paid
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/admin/payment-collections/:id/mark-as-paid
+  body: json
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+params:path {
+  id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "order_id": ""
+  }
+}

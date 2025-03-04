@@ -3,6 +3,7 @@
 # IDEs
 .idea
 .vscode
+.devcontainer
 
 # dependencies
 /node_modules

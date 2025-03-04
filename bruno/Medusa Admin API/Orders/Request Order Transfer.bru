@@ -1,0 +1,31 @@
+meta {
+  name: Request Order Transfer
+  type: http
+  seq: 14
+}
+
+post {
+  url: {{baseUrl}}/admin/orders/:id/transfer
+  body: json
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+params:path {
+  id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "customer_id": "",
+    "description": "",
+    "internal_note": ""
+  }
+}

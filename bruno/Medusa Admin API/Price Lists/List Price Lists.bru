@@ -1,0 +1,30 @@
+meta {
+  name: List Price Lists
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/admin/price-lists
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+  ~offset: 
+  ~limit: 
+  ~order: 
+  ~q: 
+  ~id: 
+  ~starts_at: 
+  ~ends_at: 
+  ~status: 
+  ~rules_count: 
+  ~$and: 
+  ~$or: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

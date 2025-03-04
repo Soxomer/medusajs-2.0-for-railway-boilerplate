@@ -1,0 +1,23 @@
+meta {
+  name: Get a Promotion
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{baseUrl}}/admin/promotions/:id
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+params:path {
+  id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

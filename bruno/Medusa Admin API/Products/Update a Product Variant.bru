@@ -1,0 +1,24 @@
+meta {
+  name: Update a Product Variant
+  type: http
+  seq: 20
+}
+
+post {
+  url: {{baseUrl}}/admin/products/:id/variants/:variant_id
+  body: json
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+params:path {
+  id: 
+  variant_id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

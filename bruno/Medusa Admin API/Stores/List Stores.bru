@@ -1,0 +1,27 @@
+meta {
+  name: List Stores
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/admin/stores
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+  ~offset: 
+  ~limit: 
+  ~order: 
+  ~q: 
+  ~id: 
+  ~name: 
+  ~$and: 
+  ~$or: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

@@ -1,0 +1,35 @@
+meta {
+  name: Add Items to Order Edit
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/admin/order-edits/:id/items
+  body: json
+  auth: bearer
+}
+
+params:path {
+  id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "items": [
+      {
+        "variant_id": "",
+        "quantity": "",
+        "unit_price": "",
+        "internal_note": "",
+        "allow_backorder": "",
+        "metadata": {},
+        "compare_at_unit_price": ""
+      }
+    ]
+  }
+}

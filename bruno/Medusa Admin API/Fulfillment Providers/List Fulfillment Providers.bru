@@ -1,0 +1,26 @@
+meta {
+  name: List Fulfillment Providers
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/admin/fulfillment-providers
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+  ~offset: 
+  ~limit: 
+  ~order: 
+  ~id: 
+  ~is_enabled: 
+  ~q: 
+  ~stock_location_id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

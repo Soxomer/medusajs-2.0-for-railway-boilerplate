@@ -1,0 +1,15 @@
+meta {
+  name: Validate Authentication Callback
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{baseUrl}}/auth/user/:auth_provider/callback
+  body: none
+  auth: none
+}
+
+params:path {
+  auth_provider: 
+}

@@ -1,0 +1,19 @@
+meta {
+  name: List Fulfillment Options
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/admin/fulfillment-providers/:id/options
+  body: none
+  auth: bearer
+}
+
+params:path {
+  id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

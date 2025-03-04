@@ -1,0 +1,19 @@
+meta {
+  name: Confirm Order Edit
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/admin/order-edits/:id/confirm
+  body: none
+  auth: bearer
+}
+
+params:path {
+  id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

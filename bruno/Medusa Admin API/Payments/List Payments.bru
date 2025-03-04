@@ -1,0 +1,30 @@
+meta {
+  name: List Payments
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/admin/payments
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+  ~offset: 
+  ~limit: 
+  ~order: 
+  ~q: 
+  ~id: 
+  ~payment_session_id: 
+  ~created_at: 
+  ~updated_at: 
+  ~deleted_at: 
+  ~$and: 
+  ~$or: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

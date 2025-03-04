@@ -1,0 +1,24 @@
+meta {
+  name: Mark a Fulfillment as Delivered-
+  type: http
+  seq: 10
+}
+
+post {
+  url: {{baseUrl}}/admin/orders/:id/fulfillments/:fulfillment_id/mark-as-delivered
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+params:path {
+  id: 
+  fulfillment_id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

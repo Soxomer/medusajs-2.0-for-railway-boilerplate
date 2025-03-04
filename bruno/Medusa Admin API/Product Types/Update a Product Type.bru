@@ -1,0 +1,30 @@
+meta {
+  name: Update a Product Type
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/admin/product-types/:id
+  body: json
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+params:path {
+  id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "value": "",
+    "metadata": {}
+  }
+}

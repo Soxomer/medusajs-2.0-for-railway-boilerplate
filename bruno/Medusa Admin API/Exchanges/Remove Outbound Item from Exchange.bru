@@ -1,0 +1,24 @@
+meta {
+  name: Remove Outbound Item from Exchange
+  type: http
+  seq: 13
+}
+
+delete {
+  url: {{baseUrl}}/admin/exchanges/:id/outbound/items/:action_id
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+params:path {
+  id: 
+  action_id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

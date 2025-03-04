@@ -1,0 +1,37 @@
+meta {
+  name: List Product Categories
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/admin/product-categories
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+  ~offset: 
+  ~limit: 
+  ~order: 
+  ~q: 
+  ~id: 
+  ~description: 
+  ~handle: 
+  ~parent_category_id: 
+  ~include_ancestors_tree: 
+  ~include_descendants_tree: 
+  ~is_internal: 
+  ~is_active: 
+  ~created_at: 
+  ~updated_at: 
+  ~deleted_at: 
+  ~$and: 
+  ~$or: 
+  ~name: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

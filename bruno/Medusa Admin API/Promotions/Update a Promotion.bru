@@ -1,0 +1,23 @@
+meta {
+  name: Update a Promotion
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{baseUrl}}/admin/promotions/:id
+  body: json
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+params:path {
+  id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

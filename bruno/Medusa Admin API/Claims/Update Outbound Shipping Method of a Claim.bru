@@ -1,0 +1,32 @@
+meta {
+  name: Update Outbound Shipping Method of a Claim
+  type: http
+  seq: 18
+}
+
+post {
+  url: {{baseUrl}}/admin/claims/:id/outbound/shipping-method/:action_id
+  body: json
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+params:path {
+  id: 
+  action_id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "custom_amount": "",
+    "internal_note": "",
+    "metadata": {}
+  }
+}

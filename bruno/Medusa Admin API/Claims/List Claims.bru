@@ -1,0 +1,31 @@
+meta {
+  name: List Claims
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/admin/claims
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+  ~offset: 
+  ~limit: 
+  ~order: 
+  ~deleted_at: 
+  ~q: 
+  ~id: 
+  ~order_id: 
+  ~status: 
+  ~created_at: 
+  ~updated_at: 
+  ~$and: 
+  ~$or: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

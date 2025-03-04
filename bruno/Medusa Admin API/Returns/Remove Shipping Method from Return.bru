@@ -1,0 +1,24 @@
+meta {
+  name: Remove Shipping Method from Return
+  type: http
+  seq: 22
+}
+
+delete {
+  url: {{baseUrl}}/admin/returns/:id/shipping-method/:action_id
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+params:path {
+  id: 
+  action_id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

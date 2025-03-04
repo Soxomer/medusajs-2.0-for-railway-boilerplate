@@ -1,0 +1,41 @@
+meta {
+  name: Create Price List
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/admin/price-lists
+  body: json
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "title": "",
+    "description": "",
+    "starts_at": "",
+    "ends_at": "",
+    "status": "",
+    "type": "",
+    "rules": {},
+    "prices": [
+      {
+        "currency_code": "",
+        "amount": "",
+        "variant_id": "",
+        "min_quantity": "",
+        "max_quantity": "",
+        "rules": {}
+      }
+    ]
+  }
+}

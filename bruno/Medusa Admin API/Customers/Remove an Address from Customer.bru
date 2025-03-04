@@ -1,0 +1,24 @@
+meta {
+  name: Remove an Address from Customer
+  type: http
+  seq: 10
+}
+
+delete {
+  url: {{baseUrl}}/admin/customers/:id/addresses/:address_id
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+params:path {
+  id: 
+  address_id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

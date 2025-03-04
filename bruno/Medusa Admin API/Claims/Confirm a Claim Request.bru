@@ -1,0 +1,23 @@
+meta {
+  name: Confirm a Claim Request
+  type: http
+  seq: 20
+}
+
+post {
+  url: {{baseUrl}}/admin/claims/:id/request
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+params:path {
+  id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

@@ -1,0 +1,28 @@
+meta {
+  name: List Rule Values Given a Rule Attribute
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{baseUrl}}/admin/promotions/rule-value-options/:rule_type/:rule_attribute_id
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ~offset: 
+  ~limit: 
+  ~order: 
+  ~promotion_type: 
+  ~application_method_type: 
+}
+
+params:path {
+  rule_type: 
+  rule_attribute_id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

@@ -1,0 +1,20 @@
+meta {
+  name: Remove Shipping Method from Order Edit
+  type: http
+  seq: 11
+}
+
+delete {
+  url: {{baseUrl}}/admin/order-edits/:id/shipping-method/:action_id
+  body: none
+  auth: bearer
+}
+
+params:path {
+  id: 
+  action_id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

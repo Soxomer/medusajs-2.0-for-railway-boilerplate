@@ -1,0 +1,31 @@
+meta {
+  name: Create Region
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/admin/regions
+  body: json
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "name": "",
+    "currency_code": "",
+    "countries": [],
+    "automatic_taxes": "",
+    "is_tax_inclusive": "",
+    "payment_providers": [],
+    "metadata": {}
+  }
+}

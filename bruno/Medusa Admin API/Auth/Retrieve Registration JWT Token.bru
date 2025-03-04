@@ -1,0 +1,19 @@
+meta {
+  name: Retrieve Registration JWT Token
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{baseUrl}}/auth/user/:auth_provider/register
+  body: json
+  auth: none
+}
+
+params:path {
+  auth_provider: 
+}
+
+body:json {
+  {}
+}

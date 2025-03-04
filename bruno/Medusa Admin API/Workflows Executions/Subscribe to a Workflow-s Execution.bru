@@ -1,0 +1,19 @@
+meta {
+  name: Subscribe to a Workflow-s Execution
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{baseUrl}}/admin/workflows-executions/:workflow_id/subscribe
+  body: none
+  auth: bearer
+}
+
+params:path {
+  workflow_id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

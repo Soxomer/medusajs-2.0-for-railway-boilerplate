@@ -1,0 +1,40 @@
+meta {
+  name: Update a Shipping Option
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/admin/shipping-options/:id
+  body: json
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+params:path {
+  id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "name": "",
+    "data": {},
+    "price_type": "",
+    "provider_id": "",
+    "shipping_profile_id": "",
+    "type": {
+      "label": "",
+      "description": "",
+      "code": ""
+    },
+    "prices": [],
+    "rules": []
+  }
+}

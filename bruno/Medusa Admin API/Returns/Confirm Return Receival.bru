@@ -1,0 +1,29 @@
+meta {
+  name: Confirm Return Receival
+  type: http
+  seq: 14
+}
+
+post {
+  url: {{baseUrl}}/admin/returns/:id/receive/confirm
+  body: json
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+params:path {
+  id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "no_notification": ""
+  }
+}

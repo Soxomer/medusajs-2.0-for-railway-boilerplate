@@ -1,0 +1,31 @@
+meta {
+  name: Update Product Variant-s Inventory Details
+  type: http
+  seq: 23
+}
+
+post {
+  url: {{baseUrl}}/admin/products/:id/variants/:variant_id/inventory-items/:inventory_item_id
+  body: json
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+params:path {
+  id: 
+  variant_id: 
+  inventory_item_id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "required_quantity": ""
+  }
+}

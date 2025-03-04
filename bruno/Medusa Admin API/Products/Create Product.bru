@@ -1,0 +1,19 @@
+meta {
+  name: Create Product
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/admin/products
+  body: json
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

@@ -1,0 +1,19 @@
+meta {
+  name: Authenticate User
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/auth/user/:auth_provider
+  body: json
+  auth: none
+}
+
+params:path {
+  auth_provider: 
+}
+
+body:json {
+  {}
+}

@@ -1,0 +1,40 @@
+meta {
+  name: List Products
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/admin/products
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+  ~offset: 
+  ~limit: 
+  ~order: 
+  ~price_list_id: 
+  ~q: 
+  ~status: 
+  ~sales_channel_id: 
+  ~title: 
+  ~handle: 
+  ~id: 
+  ~is_giftcard: 
+  ~tags: 
+  ~type_id: 
+  ~category_id: 
+  ~created_at: 
+  ~updated_at: 
+  ~deleted_at: 
+  ~$and: 
+  ~$or: 
+  ~collection_id: 
+  ~variants: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

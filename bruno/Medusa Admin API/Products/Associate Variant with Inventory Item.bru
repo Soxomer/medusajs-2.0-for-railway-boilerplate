@@ -1,0 +1,31 @@
+meta {
+  name: Associate Variant with Inventory Item
+  type: http
+  seq: 22
+}
+
+post {
+  url: {{baseUrl}}/admin/products/:id/variants/:variant_id/inventory-items
+  body: json
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+params:path {
+  id: 
+  variant_id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "required_quantity": "",
+    "inventory_item_id": ""
+  }
+}

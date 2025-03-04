@@ -1,0 +1,46 @@
+meta {
+  name: Manage Prices in Price List
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{baseUrl}}/admin/price-lists/:id/prices/batch
+  body: json
+  auth: bearer
+}
+
+params:path {
+  id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "create": [
+      {
+        "currency_code": "",
+        "amount": "",
+        "variant_id": "",
+        "min_quantity": "",
+        "max_quantity": "",
+        "rules": {}
+      }
+    ],
+    "update": [
+      {
+        "id": "",
+        "currency_code": "",
+        "amount": "",
+        "variant_id": "",
+        "min_quantity": "",
+        "max_quantity": "",
+        "rules": {}
+      }
+    ],
+    "delete": []
+  }
+}

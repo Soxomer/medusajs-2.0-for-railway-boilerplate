@@ -1,0 +1,19 @@
+meta {
+  name: Cancel Return Receival
+  type: http
+  seq: 10
+}
+
+delete {
+  url: {{baseUrl}}/admin/returns/:id/receive
+  body: none
+  auth: bearer
+}
+
+params:path {
+  id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

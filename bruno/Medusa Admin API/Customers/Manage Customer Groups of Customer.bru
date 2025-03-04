@@ -1,0 +1,30 @@
+meta {
+  name: Manage Customer Groups of Customer
+  type: http
+  seq: 11
+}
+
+post {
+  url: {{baseUrl}}/admin/customers/:id/customer-groups
+  body: json
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+params:path {
+  id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "add": [],
+    "remove": []
+  }
+}

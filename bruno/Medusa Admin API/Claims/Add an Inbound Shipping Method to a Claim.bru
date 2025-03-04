@@ -1,0 +1,29 @@
+meta {
+  name: Add an Inbound Shipping Method to a Claim
+  type: http
+  seq: 11
+}
+
+post {
+  url: {{baseUrl}}/admin/claims/:id/inbound/shipping-method
+  body: json
+  auth: bearer
+}
+
+params:path {
+  id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "shipping_option_id": "",
+    "custom_amount": "",
+    "description": "",
+    "internal_note": "",
+    "metadata": {}
+  }
+}

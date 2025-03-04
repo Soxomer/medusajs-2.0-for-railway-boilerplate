@@ -1,0 +1,31 @@
+meta {
+  name: Update Damaged Item of Return
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{baseUrl}}/admin/returns/:id/dismiss-items/:action_id
+  body: json
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+params:path {
+  id: 
+  action_id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "quantity": "",
+    "internal_note": ""
+  }
+}

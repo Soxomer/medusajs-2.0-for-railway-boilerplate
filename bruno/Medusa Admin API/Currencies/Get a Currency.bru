@@ -1,0 +1,23 @@
+meta {
+  name: Get a Currency
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/admin/currencies/:code
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+params:path {
+  code: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

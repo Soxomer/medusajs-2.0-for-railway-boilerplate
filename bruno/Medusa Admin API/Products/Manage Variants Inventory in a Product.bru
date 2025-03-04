@@ -1,0 +1,44 @@
+meta {
+  name: Manage Variants Inventory in a Product
+  type: http
+  seq: 18
+}
+
+post {
+  url: {{baseUrl}}/admin/products/:id/variants/inventory-items/batch
+  body: json
+  auth: bearer
+}
+
+params:path {
+  id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "create": [
+      {
+        "required_quantity": "",
+        "inventory_item_id": "",
+        "variant_id": ""
+      }
+    ],
+    "update": [
+      {
+        "required_quantity": "",
+        "inventory_item_id": "",
+        "variant_id": ""
+      }
+    ],
+    "delete": [
+      {
+        "inventory_item_id": "",
+        "variant_id": ""
+      }
+    ]
+  }
+}

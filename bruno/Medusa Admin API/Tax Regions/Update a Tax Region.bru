@@ -1,0 +1,30 @@
+meta {
+  name: Update a Tax Region
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/admin/tax-regions/:id
+  body: json
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+params:path {
+  id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "province_code": "",
+    "metadata": {}
+  }
+}

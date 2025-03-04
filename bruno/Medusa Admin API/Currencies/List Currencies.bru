@@ -1,0 +1,26 @@
+meta {
+  name: List Currencies
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/admin/currencies
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+  ~offset: 
+  ~limit: 
+  ~order: 
+  ~q: 
+  ~code: 
+  ~$and: 
+  ~$or: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

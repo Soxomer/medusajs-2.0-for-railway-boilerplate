@@ -1,0 +1,31 @@
+meta {
+  name: Refund Payment
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{baseUrl}}/admin/payments/:id/refund
+  body: json
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+params:path {
+  id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "amount": "",
+    "refund_reason_id": "",
+    "note": ""
+  }
+}

@@ -1,0 +1,34 @@
+meta {
+  name: List Orders
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/admin/orders
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+  ~offset: 
+  ~limit: 
+  ~order: 
+  ~id: 
+  ~status: 
+  ~$and: 
+  ~$or: 
+  ~sales_channel_id: 
+  ~fulfillment_status: 
+  ~payment_status: 
+  ~region_id: 
+  ~q: 
+  ~created_at: 
+  ~updated_at: 
+  ~customer_id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

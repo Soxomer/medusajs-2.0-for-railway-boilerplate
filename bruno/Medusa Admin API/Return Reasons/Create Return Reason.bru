@@ -1,0 +1,29 @@
+meta {
+  name: Create Return Reason
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/admin/return-reasons
+  body: json
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "value": "",
+    "label": "",
+    "description": "",
+    "parent_return_reason_id": "",
+    "metadata": {}
+  }
+}

@@ -1,0 +1,24 @@
+meta {
+  name: Create Shipment for an Order-s Fulfillment
+  type: http
+  seq: 11
+}
+
+post {
+  url: {{baseUrl}}/admin/orders/:id/fulfillments/:fulfillment_id/shipments
+  body: json
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+params:path {
+  id: 
+  fulfillment_id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

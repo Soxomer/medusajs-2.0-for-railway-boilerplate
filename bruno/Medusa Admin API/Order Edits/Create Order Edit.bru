@@ -1,0 +1,24 @@
+meta {
+  name: Create Order Edit
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/admin/order-edits
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "order_id": "",
+    "description": "",
+    "internal_note": "",
+    "metadata": {}
+  }
+}

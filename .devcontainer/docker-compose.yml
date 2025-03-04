@@ -6,9 +6,11 @@ services:
 
     volumes:
       - ..:/app:cached
+      - devcontainer-medusa-root-data:/root # persists root dotfiles, history, etc.
+      # - devcontainer-medusa-history:/root/.zsh_history # TODO persists only zsh history shouldn't persist entire root ( move important files to DockerFile COPY build step or vsConfig)
     ports:
-      - "8000:8000" # frontend
-      - "9000:9000" # backend
+      - "8000:8000"
+      - "9000:9000"
     env_file:
       - ../storefront/.env.local
       - ../backend/.env
@@ -67,7 +69,6 @@ services:
       - postgres_data:/var/lib/postgresql/data
     env_file:
       - ../backend/.env
-
     ports:
       - "5432:5432"
     healthcheck:
@@ -111,3 +112,4 @@ volumes:
   redis_data:
   minio_data:
   # meili_data:
+  devcontainer-medusa-root-data:

@@ -1,0 +1,37 @@
+meta {
+  name: Add Claim Items to a Claim
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{baseUrl}}/admin/claims/:id/claim-items
+  body: json
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+params:path {
+  id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "items": [
+      {
+        "id": "",
+        "quantity": "",
+        "reason": "",
+        "description": "",
+        "internal_note": ""
+      }
+    ]
+  }
+}

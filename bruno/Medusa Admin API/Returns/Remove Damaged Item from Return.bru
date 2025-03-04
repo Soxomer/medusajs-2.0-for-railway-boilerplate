@@ -1,0 +1,24 @@
+meta {
+  name: Remove Damaged Item from Return
+  type: http
+  seq: 8
+}
+
+delete {
+  url: {{baseUrl}}/admin/returns/:id/dismiss-items/:action_id
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+params:path {
+  id: 
+  action_id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

@@ -1,0 +1,23 @@
+meta {
+  name: Get a Collection
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/admin/collections/:id
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+params:path {
+  id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

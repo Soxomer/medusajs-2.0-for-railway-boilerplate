@@ -1,0 +1,19 @@
+meta {
+  name: Export Products
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/admin/products/export
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

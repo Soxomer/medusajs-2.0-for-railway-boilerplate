@@ -1,0 +1,31 @@
+meta {
+  name: List a Product-s Options
+  type: http
+  seq: 10
+}
+
+get {
+  url: {{baseUrl}}/admin/products/:id/options
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+  ~offset: 
+  ~limit: 
+  ~order: 
+  ~q: 
+  ~id: 
+  ~title: 
+  ~$and: 
+  ~$or: 
+}
+
+params:path {
+  id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

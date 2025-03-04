@@ -1,0 +1,26 @@
+meta {
+  name: List Payment Providers
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/admin/payments/payment-providers
+  body: none
+  auth: bearer
+}
+
+params:query {
+  id: 
+  ~fields: 
+  ~offset: 
+  ~limit: 
+  ~order: 
+  ~is_enabled: 
+  ~$and: 
+  ~$or: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

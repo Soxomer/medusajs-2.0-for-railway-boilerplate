@@ -1,0 +1,19 @@
+meta {
+  name: Delete a Refund Reason
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{baseUrl}}/admin/refund-reasons/:id
+  body: none
+  auth: bearer
+}
+
+params:path {
+  id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

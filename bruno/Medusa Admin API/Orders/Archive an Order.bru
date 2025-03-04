@@ -1,0 +1,23 @@
+meta {
+  name: Archive an Order
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/admin/orders/:id/archive
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+params:path {
+  id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

@@ -1,0 +1,33 @@
+meta {
+  name: List Return Reasons
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/admin/return-reasons
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+  ~offset: 
+  ~limit: 
+  ~order: 
+  ~q: 
+  ~id: 
+  ~value: 
+  ~label: 
+  ~description: 
+  ~parent_return_reason_id: 
+  ~created_at: 
+  ~updated_at: 
+  ~deleted_at: 
+  ~$and: 
+  ~$or: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

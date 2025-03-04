@@ -1,0 +1,40 @@
+meta {
+  name: Update a Tax Rate
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/admin/tax-rates/:id
+  body: json
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+params:path {
+  id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "rate": "",
+    "code": "",
+    "rules": [
+      {
+        "reference": "",
+        "reference_id": ""
+      }
+    ],
+    "name": "",
+    "is_default": "",
+    "is_combinable": "",
+    "metadata": {}
+  }
+}

@@ -1,0 +1,35 @@
+meta {
+  name: Create Tax Region
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/admin/tax-regions
+  body: json
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "country_code": "",
+    "province_code": "",
+    "parent_id": "",
+    "default_tax_rate": {
+      "rate": "",
+      "code": "",
+      "name": "",
+      "is_combinable": "",
+      "metadata": {}
+    },
+    "metadata": {}
+  }
+}

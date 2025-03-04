@@ -1,0 +1,30 @@
+meta {
+  name: Create Reservation
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/admin/reservations
+  body: json
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "line_item_id": "",
+    "location_id": "",
+    "inventory_item_id": "",
+    "quantity": "",
+    "description": "",
+    "metadata": {}
+  }
+}

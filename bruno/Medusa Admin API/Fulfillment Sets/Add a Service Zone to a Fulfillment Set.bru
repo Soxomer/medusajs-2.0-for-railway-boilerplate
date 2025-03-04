@@ -1,0 +1,30 @@
+meta {
+  name: Add a Service Zone to a Fulfillment Set
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/admin/fulfillment-sets/:id/service-zones
+  body: json
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+params:path {
+  id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "name": "",
+    "geo_zones": []
+  }
+}

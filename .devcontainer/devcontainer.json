@@ -2,18 +2,19 @@
   "name": "Medusa Development",
   "dockerComposeFile": "./docker-compose.yml",
   "service": "app",
-  "runServices": ["app","redis","postgres","minio"],
+  "runServices": ["app", "redis", "postgres", "minio"],
   "workspaceFolder": "/app",
 
   "features": {
     "ghcr.io/devcontainers/features/common-utils:2": {
       "configureZshAsDefaultShell": true
-    }  
-  },    
+    }
+  },
 
   "customizations": {
     "vscode": {
       "settings": {
+        "terminal.integrated.shell.linux": "/usr/local/bin/nu",
         "editor.fontFamily": "AnySphere, monospace",
         "editor.fontLigatures": true,
         "editor.fontWeight": "normal",
@@ -36,7 +37,9 @@
           "source.fixAll": "explicit",
           "source.organizeImports": "explicit"
         },
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "terminal.integrated.defaultProfile.linux": "zsh",
+        "terminal.integrated.allowChords": false
       },
 
       "extensions": [
@@ -66,8 +69,15 @@
         "piousdeer.adwaita-theme",
         "anysphere.pyright",
         "pnp.polacode",
-        "ms-azuretools.vscode-docker"
-      ]
+        "ms-azuretools.vscode-docker",
+        "ms-playwright.playwright"
+      ],
+      "terminal.integrated.profiles.linux": {
+        "nu": {
+          "path": "/usr/local/bin/nu",
+          "icon": "terminal"
+        }
+      }
     }
   },
   "portsAttributes": {
@@ -90,6 +100,6 @@
       "label": "minio"
     }
   },
-  
-  "forwardPorts": [9000,8000,5432,6379,9100,9001]
+
+  "forwardPorts": [9000, 8000, 5432, 6379, 9100, 9001]
 }

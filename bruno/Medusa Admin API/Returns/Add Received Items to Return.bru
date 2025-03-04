@@ -1,0 +1,36 @@
+meta {
+  name: Add Received Items to Return
+  type: http
+  seq: 11
+}
+
+post {
+  url: {{baseUrl}}/admin/returns/:id/receive-items
+  body: json
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+params:path {
+  id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "items": [
+      {
+        "id": "",
+        "quantity": "",
+        "description": "",
+        "internal_note": ""
+      }
+    ]
+  }
+}

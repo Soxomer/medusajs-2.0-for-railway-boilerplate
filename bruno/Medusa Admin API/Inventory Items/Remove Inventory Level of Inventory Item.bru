@@ -1,0 +1,24 @@
+meta {
+  name: Remove Inventory Level of Inventory Item
+  type: http
+  seq: 11
+}
+
+delete {
+  url: {{baseUrl}}/admin/inventory-items/:id/location-levels/:location_id
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+params:path {
+  id: 
+  location_id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

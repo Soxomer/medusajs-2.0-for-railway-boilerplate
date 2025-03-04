@@ -1,0 +1,19 @@
+meta {
+  name: Create Campaign
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/admin/campaigns
+  body: json
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

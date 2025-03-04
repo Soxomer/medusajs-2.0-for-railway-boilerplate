@@ -1,0 +1,23 @@
+meta {
+  name: Get a Return
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/admin/returns/:id
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+params:path {
+  id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

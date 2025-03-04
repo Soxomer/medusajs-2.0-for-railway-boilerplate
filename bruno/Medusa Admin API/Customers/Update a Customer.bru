@@ -1,0 +1,23 @@
+meta {
+  name: Update a Customer
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/admin/customers/:id
+  body: json
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+params:path {
+  id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

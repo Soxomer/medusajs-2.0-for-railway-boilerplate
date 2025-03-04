@@ -1,0 +1,29 @@
+meta {
+  name: Update an Item in an Order Edit
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{baseUrl}}/admin/order-edits/:id/items/:action_id
+  body: json
+  auth: bearer
+}
+
+params:path {
+  id: 
+  action_id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "quantity": "",
+    "internal_note": "",
+    "unit_price": "",
+    "compare_at_unit_price": ""
+  }
+}

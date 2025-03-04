@@ -1,0 +1,21 @@
+meta {
+  name: Create Product Import
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{baseUrl}}/admin/products/import
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "file": {}
+  }
+}

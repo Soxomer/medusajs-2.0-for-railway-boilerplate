@@ -1,0 +1,25 @@
+meta {
+  name: Get a Product Category
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/admin/product-categories/:id
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+  ~include_ancestors_tree: 
+  ~include_descendants_tree: 
+}
+
+params:path {
+  id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

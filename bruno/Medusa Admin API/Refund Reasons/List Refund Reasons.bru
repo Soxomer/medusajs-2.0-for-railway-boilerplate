@@ -1,0 +1,26 @@
+meta {
+  name: List Refund Reasons
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/admin/refund-reasons
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+  ~offset: 
+  ~limit: 
+  ~order: 
+  ~id: 
+  ~q: 
+  ~$and: 
+  ~$or: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

@@ -1,0 +1,19 @@
+meta {
+  name: Refresh Invite Token
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{baseUrl}}/admin/invites/:id/resend
+  body: none
+  auth: none
+}
+
+params:query {
+  ~fields: 
+}
+
+params:path {
+  id: 
+}

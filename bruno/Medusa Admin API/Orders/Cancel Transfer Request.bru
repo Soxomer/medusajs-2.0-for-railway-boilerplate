@@ -1,0 +1,23 @@
+meta {
+  name: Cancel Transfer Request
+  type: http
+  seq: 15
+}
+
+post {
+  url: {{baseUrl}}/admin/orders/:id/transfer/cancel
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+params:path {
+  id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

@@ -1,0 +1,24 @@
+meta {
+  name: Remove an Outbound Item from Claim
+  type: http
+  seq: 16
+}
+
+delete {
+  url: {{baseUrl}}/admin/claims/:id/outbound/items/:action_id
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+params:path {
+  id: 
+  action_id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

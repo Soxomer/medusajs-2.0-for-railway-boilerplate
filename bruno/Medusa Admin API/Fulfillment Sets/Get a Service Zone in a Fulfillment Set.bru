@@ -1,0 +1,24 @@
+meta {
+  name: Get a Service Zone in a Fulfillment Set
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/admin/fulfillment-sets/:id/service-zones/:zone_id
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+params:path {
+  id: 
+  zone_id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

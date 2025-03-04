@@ -1,0 +1,30 @@
+meta {
+  name: Manage Products in Sales Channel
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{baseUrl}}/admin/sales-channels/:id/products
+  body: json
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+params:path {
+  id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "add": [],
+    "remove": []
+  }
+}

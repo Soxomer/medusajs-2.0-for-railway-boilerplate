@@ -1,0 +1,64 @@
+meta {
+  name: Create Fulfillment
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/admin/fulfillments
+  body: json
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "location_id": "",
+    "provider_id": "",
+    "delivery_address": {
+      "first_name": "",
+      "last_name": "",
+      "phone": "",
+      "company": "",
+      "address_1": "",
+      "address_2": "",
+      "city": "",
+      "country_code": "",
+      "province": "",
+      "postal_code": "",
+      "metadata": {}
+    },
+    "items": [
+      {
+        "title": "",
+        "sku": "",
+        "quantity": "",
+        "barcode": "",
+        "line_item_id": "",
+        "inventory_item_id": ""
+      }
+    ],
+    "labels": [
+      {
+        "tracking_number": "",
+        "tracking_url": "",
+        "label_url": ""
+      }
+    ],
+    "order_id": "",
+    "shipping_option_id": "",
+    "data": {},
+    "packed_at": "",
+    "shipped_at": "",
+    "delivered_at": "",
+    "canceled_at": "",
+    "metadata": {}
+  }
+}

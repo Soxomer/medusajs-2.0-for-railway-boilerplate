@@ -1,0 +1,24 @@
+meta {
+  name: List Workflows Executions
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/admin/workflows-executions
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+  ~offset: 
+  ~limit: 
+  ~order: 
+  ~transaction_id: 
+  ~workflow_id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

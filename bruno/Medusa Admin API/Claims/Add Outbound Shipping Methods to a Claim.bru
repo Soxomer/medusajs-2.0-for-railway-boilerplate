@@ -1,0 +1,33 @@
+meta {
+  name: Add Outbound Shipping Methods to a Claim
+  type: http
+  seq: 17
+}
+
+post {
+  url: {{baseUrl}}/admin/claims/:id/outbound/shipping-method
+  body: json
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+params:path {
+  id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "shipping_option_id": "",
+    "custom_amount": "",
+    "description": "",
+    "internal_note": "",
+    "metadata": {}
+  }
+}

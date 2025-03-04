@@ -1,0 +1,29 @@
+meta {
+  name: Update Inbound Items of a Claim
+  type: http
+  seq: 9
+}
+
+post {
+  url: {{baseUrl}}/admin/claims/:id/inbound/items/:action_id
+  body: json
+  auth: bearer
+}
+
+params:path {
+  id: 
+  action_id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "quantity": "",
+    "internal_note": "",
+    "reason_id": "",
+    "metadata": {}
+  }
+}

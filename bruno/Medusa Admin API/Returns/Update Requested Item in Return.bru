@@ -1,0 +1,33 @@
+meta {
+  name: Update Requested Item in Return
+  type: http
+  seq: 18
+}
+
+post {
+  url: {{baseUrl}}/admin/returns/:id/request-items/:action_id
+  body: json
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+params:path {
+  id: 
+  action_id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "quantity": "",
+    "internal_note": "",
+    "reason_id": "",
+    "metadata": {}
+  }
+}

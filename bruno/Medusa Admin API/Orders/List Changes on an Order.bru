@@ -1,0 +1,23 @@
+meta {
+  name: List Changes on an Order
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{baseUrl}}/admin/orders/:id/changes
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+params:path {
+  id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

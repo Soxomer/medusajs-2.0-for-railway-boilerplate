@@ -1,0 +1,22 @@
+meta {
+  name: Create Invite
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/admin/invites
+  body: json
+  auth: none
+}
+
+params:query {
+  ~fields: 
+}
+
+body:json {
+  {
+    "email": "",
+    "metadata": {}
+  }
+}

@@ -1,0 +1,23 @@
+meta {
+  name: Confirm an Exchange
+  type: http
+  seq: 17
+}
+
+post {
+  url: {{baseUrl}}/admin/exchanges/:id/request
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+params:path {
+  id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

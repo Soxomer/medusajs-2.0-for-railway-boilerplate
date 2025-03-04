@@ -1,0 +1,19 @@
+meta {
+  name: Request Order Edit
+  type: http
+  seq: 8
+}
+
+post {
+  url: {{baseUrl}}/admin/order-edits/:id/request
+  body: none
+  auth: bearer
+}
+
+params:path {
+  id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

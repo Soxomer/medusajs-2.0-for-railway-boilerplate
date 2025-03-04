@@ -1,0 +1,36 @@
+meta {
+  name: Add Damaged Items to Return
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{baseUrl}}/admin/returns/:id/dismiss-items
+  body: json
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+params:path {
+  id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "items": [
+      {
+        "id": "",
+        "quantity": "",
+        "description": "",
+        "internal_note": ""
+      }
+    ]
+  }
+}

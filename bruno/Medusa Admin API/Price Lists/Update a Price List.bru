@@ -1,0 +1,35 @@
+meta {
+  name: Update a Price List
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/admin/price-lists/:id
+  body: json
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+params:path {
+  id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "title": "",
+    "description": "",
+    "starts_at": "",
+    "ends_at": "",
+    "status": "",
+    "type": "",
+    "rules": {}
+  }
+}

@@ -1,0 +1,31 @@
+meta {
+  name: List Product Variants
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/admin/product-variants
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+  ~offset: 
+  ~limit: 
+  ~order: 
+  ~q: 
+  ~id: 
+  ~manage_inventory: 
+  ~allow_backorder: 
+  ~created_at: 
+  ~updated_at: 
+  ~deleted_at: 
+  ~$and: 
+  ~$or: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

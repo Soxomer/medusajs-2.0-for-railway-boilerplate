@@ -1,0 +1,34 @@
+meta {
+  name: List Sales Channels
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/admin/sales-channels
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+  ~offset: 
+  ~limit: 
+  ~order: 
+  ~q: 
+  ~id: 
+  ~name: 
+  ~description: 
+  ~is_disabled: 
+  ~created_at: 
+  ~updated_at: 
+  ~deleted_at: 
+  ~location_id: 
+  ~publishable_key_id: 
+  ~$and: 
+  ~$or: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

@@ -1,0 +1,15 @@
+meta {
+  name: Upload Files
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/admin/uploads
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}

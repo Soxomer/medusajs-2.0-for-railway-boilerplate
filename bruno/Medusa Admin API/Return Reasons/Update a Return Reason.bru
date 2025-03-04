@@ -1,0 +1,32 @@
+meta {
+  name: Update a Return Reason
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/admin/return-reasons/:id
+  body: json
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+params:path {
+  id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "label": "",
+    "value": "",
+    "description": "",
+    "metadata": {}
+  }
+}

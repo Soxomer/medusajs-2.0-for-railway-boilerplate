@@ -1,0 +1,29 @@
+meta {
+  name: Update an Inbount Item of an Exchange
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{baseUrl}}/admin/exchanges/:id/inbound/items/:action_id
+  body: json
+  auth: bearer
+}
+
+params:path {
+  id: 
+  action_id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "quantity": "",
+    "internal_note": "",
+    "reason_id": "",
+    "metadata": {}
+  }
+}

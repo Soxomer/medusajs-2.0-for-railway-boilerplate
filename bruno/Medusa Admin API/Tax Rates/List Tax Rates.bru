@@ -1,0 +1,34 @@
+meta {
+  name: List Tax Rates
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/admin/tax-rates
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+  ~offset: 
+  ~limit: 
+  ~order: 
+  ~q: 
+  ~tax_region_id: 
+  ~is_default: 
+  ~created_at: 
+  ~updated_at: 
+  ~deleted_at: 
+  ~$and: 
+  ~$or: 
+  ~service_zone_id: 
+  ~shipping_profile_id: 
+  ~provider_id: 
+  ~shipping_option_type_id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

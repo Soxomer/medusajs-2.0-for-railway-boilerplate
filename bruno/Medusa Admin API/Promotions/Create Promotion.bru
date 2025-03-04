@@ -1,0 +1,19 @@
+meta {
+  name: Create Promotion
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/admin/promotions
+  body: json
+  auth: bearer
+}
+
+params:query {
+  ~fields: 
+}
+
+auth:bearer {
+  token: {{token}}
+}
