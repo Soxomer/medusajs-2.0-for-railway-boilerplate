@@ -80,6 +80,7 @@ RUN apt-get update && \
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/.medusa ./.medusa
 COPY --from=builder /app/package.json ./package.json
+COPY --from=builder /app/tsconfig.json ./tsconfig.json
 
 # Set production environment variables with defaults
 ENV NODE_ENV=production \
