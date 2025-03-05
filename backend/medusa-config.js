@@ -24,7 +24,7 @@ import {
   MINIO_USE_SSL,
   MEILISEARCH_HOST,
   MEILISEARCH_API_KEY,
-} from "lib/constants";
+} from "./src/lib/constants";
 import { resolve } from "path";
 
 loadEnv(process.env.NODE_ENV, process.cwd());
