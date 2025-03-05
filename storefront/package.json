@@ -7,13 +7,18 @@
   "keywords": [
     "medusa-storefront"
   ],
+  "packageManager": "yarn@1.22.22",
+  "engines": {
+    "node": "22.x",
+    "yarn": ">=1.22.22"
+  },
   "scripts": {
     "wait": "await-backend",
     "launcher": "launch-storefront",
-    "dev": "npm run wait && npm run launcher dev",
-    "build": "npm run wait && npm run launcher build",
+    "dev": "yarn wait && yarn launcher dev",
+    "build": "yarn wait && yarn launcher build",
     "build:next": "next build",
-    "start": "npm run launcher start",
+    "start": "yarn launcher start",
     "lint": "next lint",
     "analyze": "ANALYZE=true next build",
     "test-e2e": "playwright test e2e"
