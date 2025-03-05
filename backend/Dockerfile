@@ -75,7 +75,7 @@ COPY --from=builder /app/.medusa ./.medusa
 COPY --from=builder /app/package.json ./package.json
 
 # Set production environment variables with defaults
-ENV NODE_ENV=production \
+ENV NODE_ENV=production \ 
     PORT=9000 \
     ADMIN_CORS=${ADMIN_CORS:-http://localhost:7000,http://localhost:7001} \
     STORE_CORS=${STORE_CORS:-http://localhost:8000} \
