@@ -28,10 +28,10 @@ import {
 } from "./src/lib/constants";
 import { resolve } from "path";
 
-loadEnv(process.env.NODE_ENV!, process.cwd());
+loadEnv(process.env.NODE_ENV, process.cwd());
 
 // Core configuration
-const projectConfig: InputConfig["projectConfig"] = {
+const projectConfig= {
   databaseUrl: DATABASE_URL,
   databaseLogging: false,
   redisUrl: REDIS_URL,
@@ -40,16 +40,16 @@ const projectConfig: InputConfig["projectConfig"] = {
   },
   workerMode: WORKER_MODE,
   http: {
-    adminCors: ADMIN_CORS!,
-    authCors: AUTH_CORS!,
-    storeCors: STORE_CORS!,
-    jwtSecret: JWT_SECRET!,
-    cookieSecret: COOKIE_SECRET!,
+    adminCors: ADMIN_CORS,
+    authCors: AUTH_CORS,
+    storeCors: STORE_CORS,
+    jwtSecret: JWT_SECRET,
+    cookieSecret: COOKIE_SECRET,
   },
 };
 
 // Admin configuration
-const adminConfig: InputConfig["admin"] = {
+const adminConfig = {
   backendUrl: BACKEND_URL,
   disable: process.env.DISABLE_MEDUSA_ADMIN === "true",
 };
