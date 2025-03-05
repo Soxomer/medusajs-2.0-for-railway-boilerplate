@@ -47,7 +47,7 @@ ENV NODE_ENV=${NODE_ENV} \
     MEDUSA_ADMIN_PASSWORD=${MEDUSA_ADMIN_PASSWORD}
 
 # Install build dependencies
-COPY package.json ./
+COPY package.json yarn.lock ./
 RUN yarn install
 
 # Copy source files
@@ -64,23 +64,15 @@ FROM node:22-slim
 
 WORKDIR /app
 
-# Create a non-root user
-RUN addgroup --system --gid 1001 nodejs && \
-    adduser --system --uid 1001 medusa && \
-    chown -R medusa:nodejs /app
-
 # Install system dependencies required for production
 RUN apt-get update && \
     apt-get install -y openssl curl && \
     rm -rf /var/lib/apt/lists/*
 
 # Copy built assets from builder
-COPY --from=builder --chown=medusa:nodejs /app/node_modules ./node_modules
-COPY --from=builder --chown=medusa:nodejs /app/.medusa ./.medusa
-COPY --from=builder --chown=medusa:nodejs /app/package.json ./package.json
-
-# Switch to non-root user
-USER medusa
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/.medusa ./.medusa
+COPY --from=builder /app/package.json ./package.json
 
 # Set production environment variables with defaults
 ENV NODE_ENV=production \
