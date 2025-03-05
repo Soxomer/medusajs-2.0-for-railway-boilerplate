@@ -12,7 +12,6 @@ import {
   RESEND_FROM_EMAIL,
   SENDGRID_API_KEY,
   SENDGRID_FROM_EMAIL,
-  SHOULD_DISABLE_ADMIN,
   STORE_CORS,
   STRIPE_API_KEY,
   STRIPE_WEBHOOK_SECRET,
@@ -31,10 +30,13 @@ import { resolve } from "path";
 loadEnv(process.env.NODE_ENV, process.cwd());
 
 // Core configuration
-const projectConfig= {
+const projectConfig: InputConfig["projectConfig"] = {
   databaseUrl: DATABASE_URL,
-  databaseLogging: false,
+  databaseLogging: true,
   redisUrl: REDIS_URL,
+  databaseDriverOptions: {
+  
+  },
   redisOptions: {
     family: 0
   },
@@ -49,7 +51,10 @@ const projectConfig= {
 };
 
 // Admin configuration
-const adminConfig = {
+const adminConfig: InputConfig["admin"] = {
+  vite(config) {
+    config.server.host = "::";
+  },
   backendUrl: BACKEND_URL,
   disable: process.env.DISABLE_MEDUSA_ADMIN === "true",
 };
