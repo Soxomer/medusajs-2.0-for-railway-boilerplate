@@ -14,8 +14,9 @@
   ],
   "scripts": {
     "build": "medusa build && node src/scripts/postBuild.js",
+    "predeploy": "medusa db:migrate",
     "seed": "medusa exec ./src/scripts/seed.ts",
-    "start": "cd .medusa/server && medusa start --verbose",
+    "start": "cd .medusa/server && yarn install && yarn predeploy && yarn run start --verbose",
     "dev": "medusa develop",
     "email:dev": "email dev --dir=./src/modules/email-notifications/templates --port=3002"
   },
