@@ -1,5 +1,5 @@
 import { loadEnv } from '@medusajs/utils'
-import { assertValue } from 'utils/assert-value'
+import { assertValue } from '../utils/assert-value'
 
 // Load and expand environment variables
 loadEnv(process.env.NODE_ENV || 'development', process.cwd())
@@ -16,7 +16,7 @@ const constructedDatabaseUrl = `postgresql://${DB_USER}:${DB_PASS}@${DB_HOST}:${
 
 // Required environment variables
 const requiredEnvVars = {
-  DATABASE_URL: constructedDatabaseUrl,
+  DATABASE_URL: process.env.DATABASE_URL,
   ADMIN_CORS: process.env.ADMIN_CORS,
   AUTH_CORS: process.env.AUTH_CORS,
   STORE_CORS: process.env.STORE_CORS,
@@ -32,7 +32,7 @@ Object.entries(requiredEnvVars).forEach(([key, value]) => {
 // Optional variables with defaults
 const optionalEnvVars = {
   NODE_ENV: process.env.NODE_ENV || 'development',
-  BACKEND_URL: process.env.BACKEND_PUBLIC_URL ?? process.env.RAILWAY_PUBLIC_DOMAIN_VALUE ?? 'http://localhost:9000',
+  BACKEND_URL: process.env.MEDUSA_BACKEND_URL ?? process.env.RAILWAY_PUBLIC_DOMAIN_VALUE ?? 'http://localhost:9000',
   REDIS_URL: process.env.REDIS_URL,
   MINIO_ENDPOINT: process.env.MINIO_ENDPOINT,
   MINIO_PORT: process.env.MINIO_PORT,
