@@ -34,7 +34,7 @@ const projectConfig = {
   databaseUrl: DATABASE_URL,
   databaseLogging: false,
   redisUrl: REDIS_URL,
-  workerMode: WORKER_MODE,
+  workerMode: process.env.MEDUSA_WORKER_MODE,
   http: {
     adminCors: ADMIN_CORS,
     authCors: AUTH_CORS,
@@ -47,7 +47,7 @@ const projectConfig = {
 // Admin configuration
 const adminConfig = {
   backendUrl: BACKEND_URL,
-  disable: SHOULD_DISABLE_ADMIN,
+  disable: process.env.DISABLE_MEDUSA_ADMIN === "true",
 };
 
 // File storage configuration
@@ -82,14 +82,24 @@ const getRedisModules = () =>
   REDIS_URL
     ? [
         {
-          key: Modules.EVENT_BUS,
-          resolve: "@medusajs/event-bus-redis",
-          options: { redisUrl: REDIS_URL },
+          resolve: "@medusajs/medusa/cache-redis",
+          options: {
+            redisUrl: process.env.REDIS_URL,
+          },
         },
         {
-          key: Modules.WORKFLOW_ENGINE,
-          resolve: "@medusajs/workflow-engine-redis",
-          options: { redis: { url: REDIS_URL } },
+          resolve: "@medusajs/medusa/event-bus-redis",
+          options: {
+            redisUrl: process.env.REDIS_URL,
+          },
+        },
+        {
+          resolve: "@medusajs/medusa/workflow-engine-redis",
+          options: {
+            redis: {
+              url: process.env.REDIS_URL,
+            },
+          },
         },
       ]
     : [];

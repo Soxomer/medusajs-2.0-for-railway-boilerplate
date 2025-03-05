@@ -4,6 +4,7 @@ WORKDIR /app
 
 # Build arguments for required environment variables
 ARG NODE_ENV=development
+ARG MEDUSA_BACKEND_URL
 ARG ADMIN_CORS
 ARG STORE_CORS
 ARG AUTH_CORS
@@ -23,9 +24,13 @@ ARG MINIO_PORT
 ARG MINIO_USE_SSL
 ARG MEDUSA_ADMIN_EMAIL
 ARG MEDUSA_ADMIN_PASSWORD
+ARG MEDUSA_WORKER_MODE
+ARG DISABLE_MEDUSA_ADMIN
+
 
 # Set build-time environment variables from args
 ENV NODE_ENV=${NODE_ENV} \
+    MEDUSA_BACKEND_URL=${MEDUSA_BACKEND_URL} \
     ADMIN_CORS=${ADMIN_CORS} \
     STORE_CORS=${STORE_CORS} \
     AUTH_CORS=${AUTH_CORS} \
@@ -44,7 +49,9 @@ ENV NODE_ENV=${NODE_ENV} \
     MINIO_PORT=${MINIO_PORT} \
     MINIO_USE_SSL=${MINIO_USE_SSL} \
     MEDUSA_ADMIN_EMAIL=${MEDUSA_ADMIN_EMAIL} \
-    MEDUSA_ADMIN_PASSWORD=${MEDUSA_ADMIN_PASSWORD}
+    MEDUSA_ADMIN_PASSWORD=${MEDUSA_ADMIN_PASSWORD} \
+    MEDUSA_WORKER_MODE=${MEDUSA_WORKER_MODE} \
+    DISABLE_MEDUSA_ADMIN=${DISABLE_MEDUSA_ADMIN}
 
 # Install build dependencies
 COPY package.json yarn.lock ./
@@ -75,7 +82,8 @@ COPY --from=builder /app/.medusa ./.medusa
 COPY --from=builder /app/package.json ./package.json
 
 # Set production environment variables with defaults
-ENV NODE_ENV=production \ 
+ENV NODE_ENV=production \
+    MEDUSA_BACKEND_URL=${MEDUSA_BACKEND_URL:-http://localhost:9000} \
     PORT=9000 \
     ADMIN_CORS=${ADMIN_CORS:-http://localhost:7000,http://localhost:7001} \
     STORE_CORS=${STORE_CORS:-http://localhost:8000} \
@@ -95,7 +103,9 @@ ENV NODE_ENV=production \
     MINIO_PORT=${MINIO_PORT:-9000} \
     MINIO_USE_SSL=${MINIO_USE_SSL:-false} \
     MEDUSA_ADMIN_EMAIL=${MEDUSA_ADMIN_EMAIL:-admin@medusa.com} \
-    MEDUSA_ADMIN_PASSWORD=${MEDUSA_ADMIN_PASSWORD:-password}
+    MEDUSA_ADMIN_PASSWORD=${MEDUSA_ADMIN_PASSWORD:-password} \
+    MEDUSA_WORKER_MODE=${MEDUSA_WORKER_MODE:-shared} \
+    DISABLE_MEDUSA_ADMIN=${DISABLE_MEDUSA_ADMIN:-false}
 
 EXPOSE 9000
 
