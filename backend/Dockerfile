@@ -12,8 +12,8 @@ COPY . .
 # Build the application
 RUN yarn build
 
-# Remove dev dependencies
-RUN yarn install --production --frozen-lockfile
+# Clean install production dependencies
+RUN yarn install --production
 
 # Production stage
 FROM node:22-slim
@@ -27,7 +27,7 @@ RUN addgroup --system --gid 1001 nodejs && \
 
 # Install system dependencies required for production
 RUN apt-get update && \
-    apt-get install -y openssl && \
+    apt-get install -y openssl curl && \
     rm -rf /var/lib/apt/lists/*
 
 # Copy built assets from builder
