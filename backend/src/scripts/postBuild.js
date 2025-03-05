@@ -23,7 +23,7 @@ if (fs.existsSync(envPath)) {
   fs.copyFileSync(envPath, path.join(MEDUSA_SERVER_PATH, ".env"));
 }
 
-// Install dependencies using npm instead of pnpm
+// Install dependencies using yarn instead of pnpm
 console.log("Installing dependencies in .medusa/server...");
 execSync("yarn install --frozen-lockfile", {
   cwd: MEDUSA_SERVER_PATH,
