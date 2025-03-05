@@ -110,4 +110,4 @@ ENV NODE_ENV=production \
 
 EXPOSE 9000
 
-CMD ["yarn", "start"]
+CMD "pwd && ls -la && medusa start" 
