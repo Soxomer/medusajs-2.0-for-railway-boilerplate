@@ -1,6 +1,6 @@
 FROM node:22-slim AS builder
 
-WORKDIR /app
+WORKDIR /medusa-app
 
 # Build arguments for required environment variables
 ARG NODE_ENV=development
@@ -69,7 +69,7 @@ RUN yarn install --production
 # Production stage
 FROM node:22-slim
 
-WORKDIR /app
+WORKDIR /medusa-app
 
 # Install system dependencies required for production
 RUN apt-get update && \
@@ -77,10 +77,10 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 # Copy built assets from builder
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/.medusa ./.medusa
-COPY --from=builder /app/package.json ./package.json
-COPY --from=builder /app/tsconfig.json ./tsconfig.json
+COPY --from=builder /medusa-app/node_modules ./node_modules
+COPY --from=builder /medusa-app/.medusa ./.medusa
+COPY --from=builder /medusa-app/package.json ./package.json
+COPY --from=builder /medusa-app/tsconfig.json ./tsconfig.json
 
 # Set production environment variables with defaults
 ENV NODE_ENV=production \
@@ -110,4 +110,4 @@ ENV NODE_ENV=production \
 
 EXPOSE 9000
 
-CMD "pwd && ls -la && medusa start" 
+CMD ["yarn", "start"]
