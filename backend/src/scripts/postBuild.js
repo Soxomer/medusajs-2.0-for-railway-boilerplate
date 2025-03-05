@@ -11,10 +11,10 @@ if (!fs.existsSync(MEDUSA_SERVER_PATH)) {
   );
 }
 
-// Copy package-lock.json instead of pnpm-lock.yaml
+// Copy yarn.lock instead of pnpm-lock.yaml
 fs.copyFileSync(
-  path.join(process.cwd(), "package-lock.json"),
-  path.join(MEDUSA_SERVER_PATH, "package-lock.json")
+  path.join(process.cwd(), "yarn.lock"),
+  path.join(MEDUSA_SERVER_PATH, "yarn.lock")
 );
 
 // Copy .env if it exists
@@ -25,7 +25,7 @@ if (fs.existsSync(envPath)) {
 
 // Install dependencies using npm instead of pnpm
 console.log("Installing dependencies in .medusa/server...");
-execSync("npm ci", {
+execSync("yarn install --frozen-lockfile", {
   cwd: MEDUSA_SERVER_PATH,
   stdio: "inherit",
 })

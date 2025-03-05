@@ -1,13 +1,24 @@
-import { loadEnv } from '@medusajs/framework/utils'
+import { loadEnv } from '@medusajs/utils'
 import { assertValue } from 'utils/assert-value'
 
+// Load and expand environment variables
 loadEnv(process.env.NODE_ENV || 'development', process.cwd())
+
+// Database connection components
+const DB_HOST = process.env.DB_HOST || 'localhost'
+const DB_PORT = process.env.POSTGRES_PORT || '5432'
+const DB_USER = process.env.POSTGRES_USER || 'postgres'
+const DB_PASS = process.env.POSTGRES_PASSWORD || 'postgres'
+const DB_NAME = process.env.POSTGRES_DB || 'medusa-db'
+
+// Construct DATABASE_URL
+const constructedDatabaseUrl = `postgresql://${DB_USER}:${DB_PASS}@${DB_HOST}:${DB_PORT}/${DB_NAME}?ssl_mode=disable`
 
 // Required environment variables
 const requiredEnvVars = {
-  DATABASE_URL: process.env.DATABASE_URL,
+  DATABASE_URL: constructedDatabaseUrl,
   ADMIN_CORS: process.env.ADMIN_CORS,
-  AUTH_CORS: process.env.AUTH_CORS, 
+  AUTH_CORS: process.env.AUTH_CORS,
   STORE_CORS: process.env.STORE_CORS,
   JWT_SECRET: process.env.JWT_SECRET,
   COOKIE_SECRET: process.env.COOKIE_SECRET

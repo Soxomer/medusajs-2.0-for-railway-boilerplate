@@ -1,5 +1,5 @@
-import { 
-  AuthenticatedMedusaRequest, 
+import {
+  AuthenticatedMedusaRequest,
   MedusaResponse,
 } from "@medusajs/framework/http"
 import { MedusaError } from "@medusajs/framework/utils"
@@ -47,8 +47,9 @@ export const POST = async (
   const marketplaceModuleService: MarketplaceModuleService = req.scope
     .resolve("marketplaceModuleService")
 
-  // create vendor
-  let vendor = await marketplaceModuleService.createVendors([vendorData])
+  // create vendor - returns array
+  const vendors = await marketplaceModuleService.createVendors([vendorData])
+  const createdVendor = vendors[0] // get first vendor
 
   // create vendor admin
   await createVendorAdminWorkflow(req.scope)
@@ -56,18 +57,18 @@ export const POST = async (
       input: {
         admin: {
           ...admin,
-          vendor_id: vendor[0].id,
+          vendor_id: createdVendor.id,
         },
         authIdentityId: req.auth_context.auth_identity_id,
       },
     })
 
-  // retrieve vendor again with admins
-  vendor = await marketplaceModuleService.retrieveVendor(vendor[0].id, {
+  // retrieve single vendor with admins
+  const vendorWithAdmins = await marketplaceModuleService.retrieveVendor(createdVendor.id, {
     relations: ["admins"],
   })
 
   res.json({
-    vendor,
+    vendor: vendorWithAdmins,
   })
 }

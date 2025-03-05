@@ -25,6 +25,7 @@ import {
   MEILISEARCH_HOST,
   MEILISEARCH_API_KEY,
 } from "lib/constants";
+import { resolve } from "path";
 
 loadEnv(process.env.NODE_ENV, process.cwd());
 
@@ -207,6 +208,7 @@ const getMarketplaceModule = () => {
 
 // Combine all modules
 const modules = [
+  {resolve:"./src/modules/launch-list"},
   ...getMarketplaceModule(),
   {
     key: Modules.FILE,
