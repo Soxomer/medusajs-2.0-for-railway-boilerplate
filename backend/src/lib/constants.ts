@@ -75,8 +75,8 @@ export const {
   STRIPE_WEBHOOK_SECRET,
   MEILISEARCH_HOST,
   MEILISEARCH_API_KEY,
-  MEDUSA_WORKER_MODE: WORKER_MODE = 'shared',
-  MEDUSA_DISABLE_ADMIN: SHOULD_DISABLE_ADMIN = false
+  MEDUSA_WORKER_MODE = 'shared',
+  MEDUSA_DISABLE_ADMIN = false
 } = optionalEnvVars
 
 export const {

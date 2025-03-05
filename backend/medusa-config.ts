@@ -15,7 +15,6 @@ import {
   STORE_CORS,
   STRIPE_API_KEY,
   STRIPE_WEBHOOK_SECRET,
-  WORKER_MODE,
   MINIO_ENDPOINT,
   MINIO_PORT,
   MINIO_ACCESS_KEY,
@@ -24,8 +23,9 @@ import {
   MINIO_USE_SSL,
   MEILISEARCH_HOST,
   MEILISEARCH_API_KEY,
+  MEDUSA_DISABLE_ADMIN,
+  MEDUSA_WORKER_MODE,
 } from "./src/lib/constants";
-import { resolve } from "path";
 
 loadEnv(process.env.NODE_ENV, process.cwd());
 
@@ -34,13 +34,10 @@ const projectConfig: InputConfig["projectConfig"] = {
   databaseUrl: DATABASE_URL,
   databaseLogging: true,
   redisUrl: REDIS_URL,
-  databaseDriverOptions: {
-  
-  },
   redisOptions: {
-    family: 0
+    family: 0,    
   },
-  workerMode: WORKER_MODE,
+  workerMode: MEDUSA_WORKER_MODE,
   http: {
     adminCors: ADMIN_CORS,
     authCors: AUTH_CORS,
@@ -52,11 +49,8 @@ const projectConfig: InputConfig["projectConfig"] = {
 
 // Admin configuration
 const adminConfig: InputConfig["admin"] = {
-  vite(config) {
-    config.server.host = "::";
-  },
   backendUrl: BACKEND_URL,
-  disable: process.env.DISABLE_MEDUSA_ADMIN === "true",
+  disable: MEDUSA_DISABLE_ADMIN,
 };
 
 // File storage configuration
