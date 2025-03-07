@@ -26,10 +26,6 @@ export const LaunchList = () => {
         },
       })
 
-    // let response = sdk.client.fetch('/store/custom',{
-    //     method:
-    // })
-
       alert("You've been added to our launch list!")
     } catch (error) {
       alert("Something went wrong. Please try again.")
