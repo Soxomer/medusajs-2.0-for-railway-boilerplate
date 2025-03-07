@@ -2,6 +2,7 @@ import { Metadata } from "next"
 import "styles/globals.css"
 import Script from "next/script"
 import { getBaseURL } from "@lib/util/env"
+import { PostHogProvider } from "./provider"
 
 export const metadata: Metadata = {
   metadataBase: new URL(getBaseURL()),
@@ -22,7 +23,9 @@ export default function RootLayout(props: { children: React.ReactNode }) {
         </Script>
       </head>
       <body>
-        <main className="relative">{props.children}</main>
+        <main className="relative">
+          <PostHogProvider>{props.children}</PostHogProvider>
+        </main>
       </body>
     </html>
   )
