@@ -63,22 +63,34 @@ const nextConfig = {
   serverRuntimeConfig: {
     port: process.env.PORT || 3000,
   },
-  // PostHog proxy configuration
+  // PostHog proxy configuration// next.config.js
   async rewrites() {
     return [
+      // Static assets with and without locale
       {
-        // Static assets
-        source: ":lang/ingest/static/:path*",
+        source: "/ingest/static/:path*",
         destination: "https://us-assets.i.posthog.com/static/:path*",
       },
       {
-        // Main API endpoint
-        source: ":lang/ingest/:path*",
+        source: "/:locale/ingest/static/:path*",
+        destination: "https://us-assets.i.posthog.com/static/:path*",
+      },
+      // Main API endpoints with and without locale
+      {
+        source: "/ingest/:path*",
         destination: "https://us.i.posthog.com/:path*",
       },
       {
-        // Decide endpoint (feature flags)
-        source: ":lang/ingest/decide",
+        source: "/:locale/ingest/:path*",
+        destination: "https://us.i.posthog.com/:path*",
+      },
+      // Decide endpoints with and without locale
+      {
+        source: "/ingest/decide",
+        destination: "https://us.i.posthog.com/decide",
+      },
+      {
+        source: "/:locale/ingest/decide",
         destination: "https://us.i.posthog.com/decide",
       },
     ]
