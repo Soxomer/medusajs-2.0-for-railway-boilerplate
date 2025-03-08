@@ -63,19 +63,22 @@ const nextConfig = {
   serverRuntimeConfig: {
     port: process.env.PORT || 3000,
   },
-  // PostHog config for proxied requests to avoid adblockers
+  // PostHog proxy configuration
   async rewrites() {
     return [
       {
-        source: "/ingest/static/:path*",
+        // Static assets
+        source: ":lang/ingest/static/:path*",
         destination: "https://us-assets.i.posthog.com/static/:path*",
       },
       {
-        source: "/ingest/:path*",
+        // Main API endpoint
+        source: ":lang/ingest/:path*",
         destination: "https://us.i.posthog.com/:path*",
       },
       {
-        source: "/ingest/decide",
+        // Decide endpoint (feature flags)
+        source: ":lang/ingest/decide",
         destination: "https://us.i.posthog.com/decide",
       },
     ]
