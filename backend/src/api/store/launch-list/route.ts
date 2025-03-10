@@ -6,6 +6,7 @@ import { log } from "console"
 type LaunchListBody = {
   email: string
   name?: string
+  user_type: "artist" | "collector" | "both"
   link?: string
   phone?: string
 }
@@ -18,14 +19,14 @@ export async function POST(
     LAUNCH_LIST_MODULE
   )
 
-  const { email, name, link } = req.body
+  const { email, name, link, user_type } = req.body
 
   try {
-    log("try")
     const entry = await launchListService.createLaunchLists({
       email,
       name,
       link,
+      user_type,
     })
 
     res.json({

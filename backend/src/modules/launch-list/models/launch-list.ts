@@ -3,6 +3,7 @@ import { model } from "@medusajs/framework/utils"
 export const LaunchList = model.define("launch_list", {
   id: model.id().primaryKey(),
   email: model.text(),
+  user_type: model.text(),
   name: model.text().nullable(),
   link: model.text().nullable(),
   phone: model.text().nullable(),

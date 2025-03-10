@@ -32,7 +32,7 @@ loadEnv(process.env.NODE_ENV, process.cwd());
 // Core configuration
 const projectConfig: InputConfig["projectConfig"] = {
   databaseUrl: DATABASE_URL,
-  databaseLogging: true,
+  databaseLogging: false,
   redisUrl: REDIS_URL,
   redisOptions: {
     family: 0,    
