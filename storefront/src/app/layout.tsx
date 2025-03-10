@@ -3,6 +3,7 @@ import "styles/globals.css"
 import Script from "next/script"
 import { getBaseURL } from "@lib/util/env"
 import { PostHogProvider } from "./provider"
+import { ThemeProvider } from "@components/theme-provider"
 
 export const metadata: Metadata = {
   metadataBase: new URL(getBaseURL()),
@@ -24,7 +25,14 @@ export default function RootLayout(props: { children: React.ReactNode }) {
       </head>
       <body>
         <main className="relative">
-          <PostHogProvider>{props.children}</PostHogProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="light"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <PostHogProvider>{props.children}</PostHogProvider>
+          </ThemeProvider>
         </main>
       </body>
     </html>

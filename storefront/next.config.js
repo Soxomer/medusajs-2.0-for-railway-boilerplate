@@ -20,6 +20,18 @@ const nextConfig = {
         hostname: "localhost",
       },
       {
+        protocol: "https",
+        hostname: "picsum.photos",
+      },
+      {
+        protocol: "https",
+        hostname: "loremflickr.com",
+      },
+      {
+        protocol: "https",
+        hostname: "unsplash.com",
+      },
+      {
         // Note: needed to serve images from /public folder
         protocol: process.env.NEXT_PUBLIC_BASE_URL?.startsWith("https")
           ? "https"
