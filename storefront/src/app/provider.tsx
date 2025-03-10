@@ -15,47 +15,32 @@ export function PostHogProvider({ children }: { children: React.ReactNode }) {
       ui_host: "https://us.posthog.com",
       //   api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST || "https://us.i.posthog.com",
       person_profiles: "always", // or 'always' to create profiles for anonymous users as well
-      capture_pageview: false, // Disable automatic pageview capture, as we capture manually
+      capture_pageview: true, // Disable automatic pageview capture, as we capture manually
+      capture_pageleave: true,
+      loaded: (posthog) => {
+        console.log("PostHog loaded", posthog)
+         const distinct_id = posthog.get_distinct_id()
+         posthog.capture("User Tracking Status", {
+           distinct_id: distinct_id,
+           $set: {
+             is_tracking_enabled:
+               localStorage.getItem("PH_tracking_enabled") === "false"
+                 ? false
+                 : true,
+           },
+         })
+      },
     })
   }, [])
 
   return (
     <PHProvider client={posthog}>
-      <SuspendedPostHogPageView />
+      {/* <SuspendedPostHogPageView /> */}
       {children}
     </PHProvider>
   )
 }
 
-function PostHogPageView() {
-  const pathname = usePathname()
-  const searchParams = useSearchParams()
-  const posthog = usePostHog()
-
-  // Track pageviews
-  useEffect(() => {
-    if (pathname && posthog) {
-      let url = window.origin + pathname
-      if (searchParams.toString()) {
-        url = url + "?" + searchParams.toString()
-      }
-
-      posthog.capture("$pageview", { $current_url: url })
-
-      posthog.capture("user_tracking_status", {
-        tracking_status:
-          localStorage.getItem("dont_track_me") === "false"
-            ? "enabled"
-            : "disabled",
-        $set: {
-          tracking_enabled: localStorage.getItem("dont_track_me") === "false",
-        },
-      })
-    }
-  }, [pathname, searchParams, posthog])
-
-  return null
-}
 
 // Wrap PostHogPageView in Suspense to avoid the useSearchParams usage above
 // from de-opting the whole app into client-side rendering
@@ -63,7 +48,8 @@ function PostHogPageView() {
 function SuspendedPostHogPageView() {
   return (
     <Suspense fallback={null}>
-      <PostHogPageView />
+      {/* <PostHogPageView /> */}
     </Suspense>
   )
 }
+

@@ -733,10 +733,10 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
-"@medusajs/client-types@preview":
-  version "0.2.12-preview-20240505115807"
-  resolved "https://registry.npmjs.org/@medusajs/client-types/-/client-types-0.2.12-preview-20240505115807.tgz#5090e140d4ade84668eedc81222ab35366088831"
-  integrity sha512-f7T/7WUAGOFfsNsjdCcVoWLlAqryaQB+hF0v/Dzst2hv+PdJGqHfHwTNdeK3ZYhUwzSQ8YdnCYsj9OEJR9SPiQ==
+"@medusajs/client-types@latest":
+  version "0.2.12"
+  resolved "https://registry.npmjs.org/@medusajs/client-types/-/client-types-0.2.12.tgz#b30953663ad2a6a0df43794672756e356dab8941"
+  integrity sha512-Qj7/uRaonxswzv28bWusdMQGGgVRVH6AvhppD5MhTeWDLLxHMyp8DkFjaRB7Z1yIqV+apBIGqapLUVR1IqoF8w==
 
 "@medusajs/icons@^2.5.1":
   version "2.6.0"
@@ -6413,7 +6413,7 @@ tailwindcss-animate@^1.0.6, tailwindcss-animate@^1.0.7:
   resolved "https://registry.npmjs.org/tailwindcss-animate/-/tailwindcss-animate-1.0.7.tgz#318b692c4c42676cc9e67b19b78775742388bef4"
   integrity sha512-bl6mpH3T7I3UFxuvDEXLxy/VuFxBk5bbzplh7tXI68mwMokNYd1t9qPBHlnyTwfa4JGC4zP516I1hYYtQ/vspA==
 
-tailwindcss-radix@^4.0.12:
+tailwindcss-radix@^4.0.2:
   version "4.0.2"
   resolved "https://registry.npmjs.org/tailwindcss-radix/-/tailwindcss-radix-4.0.2.tgz#d8105c20d0a782d731c124e0b40708ec5e1b074d"
   integrity sha512-Uoa2BUCfWKGCjQPXbj4X4Q4EWAeCsvhj0udn0IupeNcvuLbqRXvC5+bKAqsngIne5mrRUPTy/IqMXGh81YyrCA==
