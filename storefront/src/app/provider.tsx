@@ -13,7 +13,7 @@ export function PostHogProvider({ children }: { children: React.ReactNode }) {
     posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY as string, {
       api_host: "/ingest",
       ui_host: "https://us.posthog.com",
-    //   api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST || "https://us.i.posthog.com",
+      //   api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST || "https://us.i.posthog.com",
       person_profiles: "always", // or 'always' to create profiles for anonymous users as well
       capture_pageview: false, // Disable automatic pageview capture, as we capture manually
     })
@@ -42,8 +42,14 @@ function PostHogPageView() {
 
       posthog.capture("$pageview", { $current_url: url })
 
-      posthog.capture("$should_track", {
-        should_track: localStorage.getItem("dont_track_me") === "false",
+      posthog.capture("user_tracking_status", {
+        tracking_status:
+          localStorage.getItem("dont_track_me") === "false"
+            ? "enabled"
+            : "disabled",
+        $set: {
+          tracking_enabled: localStorage.getItem("dont_track_me") === "false",
+        },
       })
     }
   }, [pathname, searchParams, posthog])
