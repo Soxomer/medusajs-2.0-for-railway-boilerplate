@@ -7,10 +7,10 @@
   "keywords": [
     "medusa-storefront"
   ],
-  "packageManager": "yarn@1.22.22",
+  "packageManager": "yarn@1.22.19",
   "engines": {
     "node": "22.x",
-    "yarn": ">=1.22.22"
+    "yarn": ">=1.22.19"
   },
   "scripts": {
     "wait": "await-backend",
