@@ -30,21 +30,60 @@ type WaitlistFormData = {
 export default function Home() {
   // Check if user prefers reduced motion
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
+  // Add state for active tab
+  const [activeTab, setActiveTab] = useState("artists")
+
+  // Add scroll function
+  const scrollToElement = (
+    elementId: string,
+    callback?: () => void,
+    arg: ScrollIntoViewOptions = { block: "start" }
+  ) => {
+    const element = document.getElementById(elementId)
+    if (element) {
+      element.scrollIntoView({
+        behavior: prefersReducedMotion ? "auto" : "smooth",
+        ...arg,
+      })
+      if (callback) callback()
+    }
+  }
 
   useEffect(() => {
+    // Add smooth scroll behavior
+    document.documentElement.style.scrollBehavior = prefersReducedMotion
+      ? "auto"
+      : "smooth"
+
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)")
     setPrefersReducedMotion(mediaQuery.matches)
 
     const handleChange = () => setPrefersReducedMotion(mediaQuery.matches)
     mediaQuery.addEventListener("change", handleChange)
     return () => mediaQuery.removeEventListener("change", handleChange)
-  }, [])
+  }, [prefersReducedMotion])
 
   // Navigation items
   const navItems = [
-    { label: "How It Works", href: "#how-it-works" },
-    { label: "For Artists", href: "#for-artists" },
-    { label: "For Collectors", href: "#for-collectors" },
+    {
+      label: "How It Works",
+      href: "#how-it-works",
+      callback: () => scrollToElement("how-it-works"),
+    },
+    {
+      label: "For Artists",
+      href: "#for-artists",
+      callback: () => {
+        scrollToElement("for-artists", () => setActiveTab("artists"))
+      },
+    },
+    {
+      label: "For Collectors",
+      href: "#for-collectors",
+      callback: () => {
+        scrollToElement("for-collectors", () => setActiveTab("collectors"))
+      },
+    },
     { label: "Community", href: "#community" },
   ]
 
@@ -112,7 +151,6 @@ export default function Home() {
   const onSubmit = async (data: WaitlistFormData) => {
     try {
       setIsSubmitting(true)
-      // Replace with your actual API endpoint
       await sdk.client.fetch<WaitlistFormData>("/store/launch-list", {
         method: "POST",
         mode: "cors",
@@ -129,7 +167,7 @@ export default function Home() {
   }
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div id="top" className="flex min-h-screen flex-col">
       <Toaster position="top-center" />
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <motion.div
@@ -142,8 +180,11 @@ export default function Home() {
             className="flex items-center gap-2 font-bold text-xl sm:text-2xl text-[#FF6B6B]"
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
+            onClick={() => {
+              scrollToElement("top")
+            }}
           >
-            <span className="text-[#2D767F]">art</span>Challenge
+            <span className="text-[#2D767F]">Etchy</span>Ghoul
           </motion.div>
 
           {/* Desktop Navigation */}
@@ -156,6 +197,11 @@ export default function Home() {
                 transition={{ duration: 0.4, delay: 0.1 * i, ease: "easeOut" }}
               >
                 <Link
+                  onClick={() => {
+                    if (item.callback) {
+                      item.callback()
+                    }
+                  }}
                   href={item.href}
                   className="text-sm font-medium hover:text-[#FF6B6B] transition-colors"
                 >
@@ -230,9 +276,11 @@ export default function Home() {
                     whileTap={{ scale: 0.95 }}
                     className="w-full sm:w-auto"
                   >
-                    <Button className="bg-[#FF6B6B] hover:bg-[#FF6B6B]/90 text-white font-semibold tracking-wider px-4 sm:px-8 py-6 text-base w-full sm:w-auto">
-                      Join the Movement – Get Early Access
-                    </Button>
+                    <Link href="#join-waitlist">
+                      <Button className="bg-[#FF6B6B] hover:bg-[#FF6B6B]/90 text-white font-semibold tracking-wider px-4 sm:px-8 py-6 text-base w-full sm:w-auto">
+                        Join the Movement – Get Early Access
+                      </Button>
+                    </Link>
                   </motion.div>
                 </motion.div>
               </motion.div>
@@ -492,16 +540,21 @@ export default function Home() {
         </motion.section>
 
         {/* For Artists vs. Collectors */}
+        <div id="for-artists" />
+        <div id="for-collectors" />
         <motion.section
           className="py-16 sm:py-20 bg-white"
           ref={tabsRef}
           initial="hidden"
           animate={tabsInView ? "visible" : "hidden"}
           variants={fadeIn}
-          id="for-artists"
         >
           <div className="container px-4 md:px-6">
-            <Tabs defaultValue="artists" className="w-full">
+            <Tabs
+              value={activeTab}
+              onValueChange={setActiveTab}
+              className="w-full"
+            >
               <motion.div
                 className="flex justify-center mb-8"
                 variants={fadeIn}
@@ -514,7 +567,6 @@ export default function Home() {
                     For Artists
                   </TabsTrigger>
                   <TabsTrigger
-                    id="for-collectors"
                     value="collectors"
                     className="text-base sm:text-lg font-medium data-[state=active]:bg-[#2D767F] data-[state=active]:text-white"
                   >
@@ -705,6 +757,7 @@ export default function Home() {
 
         {/* Waitlist CTA */}
         <motion.section
+          id="join-waitlist"
           className="py-16 sm:py-20 bg-[#2D767F] text-white relative overflow-hidden"
           ref={ctaRef}
           initial="hidden"
@@ -873,9 +926,9 @@ export default function Home() {
           animate={communityInView ? "visible" : "hidden"}
           variants={fadeIn}
         >
-          <div className="container px-4 md:px-6">
+          <div className="container px-4 md:px-6 bg-transparent">
             <motion.div
-              className="text-center mb-10 sm:mb-12"
+              className="text-center mb-10 sm:mb-12 bg-tansparent"
               variants={fadeIn}
             >
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tighter font-heading text-[#2D767F] mb-4">
@@ -909,11 +962,14 @@ export default function Home() {
                   className="bg-transparent"
                   whileHover="hover"
                 >
-                  <Card className="border-none shadow-sm bg-transparent">
+                  <Card className="border-none shadow-sm bg-transparent w-full h-full">
                     <CardContent className="pt-6 bg-transparent">
                       <div className="flex flex-col gap-4 bg-transparent">
                         <div className="flex items-center gap-4 bg-transparent">
-                          <motion.div whileHover={{ scale: 1.1, rotate: 5 }} className="bg-transparent">
+                          <motion.div
+                            whileHover={{ scale: 1.1, rotate: 5 }}
+                            className="bg-transparent"
+                          >
                             <Image
                               src={testimonial.image}
                               alt={testimonial.name.split(",")[0]}
@@ -1014,7 +1070,9 @@ export default function Home() {
                       <p className="text-white text-xs font-medium">
                         {artwork.artist}
                       </p>
-                      <p className="text-white/80 text-xs">{artwork.challenge}</p>
+                      <p className="text-white/80 text-xs">
+                        {artwork.challenge}
+                      </p>
                     </motion.div>
                   </motion.div>
                 ))}
