@@ -67,10 +67,10 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  // verification: {
-  //   google: "GOOGLE_VERIFICATION_CODE", // Replace with actual
-  // },
-  // // For app-like feel (Progressive Web App)
+  verification: {
+    google: "HXAkacvl3alqeIpOrjnx_nlnbXK5myU2j7LzASpTYPA", // Replace with actual
+  },
+  // For app-like feel (Progressive Web App)
   // manifest: "/site.webmanifest",
   // icons: {
   //   icon: "/favicon.ico",
