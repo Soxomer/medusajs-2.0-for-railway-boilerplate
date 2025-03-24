@@ -1,3 +1,4 @@
+const { HttpStatusCode } = require("axios")
 const checkEnvVariables = require("./check-env-variables")
 
 checkEnvVariables()
@@ -33,10 +34,12 @@ const nextConfig = {
       },
       {
         // Note: needed to serve images from /public folder
-        protocol: process.env.NEXT_PUBLIC_BASE_URL?.startsWith("https")
+        protocol: process.env.VERCEL_URL
+          ? "https"
+          : process.env.NEXT_PUBLIC_BASE_URL?.startsWith("https")
           ? "https"
           : "http",
-        hostname: process.env.NEXT_PUBLIC_BASE_URL?.replace(/^https?:\/\//, ""),
+        hostname: process.env.VERCEL_URL||  process.env.NEXT_PUBLIC_BASE_URL?.replace(/^https?:\/\//, ""),
       },
       {
         // Note: only needed when using local-file for product media
