@@ -39,7 +39,9 @@ const nextConfig = {
           : process.env.NEXT_PUBLIC_BASE_URL?.startsWith("https")
           ? "https"
           : "http",
-        hostname: process.env.VERCEL_URL||  process.env.NEXT_PUBLIC_BASE_URL?.replace(/^https?:\/\//, ""),
+        hostname:
+          process.env.VERCEL_URL ||
+          process.env.NEXT_PUBLIC_BASE_URL?.replace(/^https?:\/\//, ""),
       },
       {
         // Note: only needed when using local-file for product media
@@ -81,6 +83,16 @@ const nextConfig = {
   // PostHog proxy configuration// next.config.js
   async rewrites() {
     return [
+      // Make sure fonts are accessible without locale prefix
+      {
+        source: "/:locale/fonts/:path*",
+        destination: "/fonts/:path*",
+      },
+      // Ensure _next/static/media folder is accessible (contains optimized fonts)
+      {
+        source: "/:locale/_next/static/media/:path*",
+        destination: "/_next/static/media/:path*",
+      },
       // Static assets with and without locale
       {
         source: "/ingest/static/:path*",

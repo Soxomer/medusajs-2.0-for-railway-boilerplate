@@ -1,0 +1,54 @@
+@font-face {
+    font-family: 'Guakala';
+    src: url('Guakala.woff2') format('woff2'),
+         url('Guakala.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Scratchy Lemon';
+    src: url('ScratchyLemon.woff2') format('woff2'),
+         url('ScratchyLemon.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'GOOD BRUSH';
+    src: url('GOODBRUSH.woff2') format('woff2'),
+         url('GOODBRUSH.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+} 
+
+@font-face {
+    font-family: 'archisticonormal';
+    src: url('Archistico_Simple-webfont.eot');
+    src: url('Archistico_Simple-webfont.eot?#iefix') format('embedded-opentype'),
+         url('Archistico_Simple-webfont.woff2') format('woff2'),
+         url('Archistico_Simple-webfont.woff') format('woff'),
+         url('Archistico_Simple-webfont.ttf') format('truetype'),
+         url('Archistico_Simple-webfont.svg#archisticonormal') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+@font-face {
+    font-family: 'archisticobold';
+    src: url('Archistico_Bold-webfont.eot');
+    src: url('Archistico_Bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('Archistico_Bold-webfont.woff2') format('woff2'),
+         url('Archistico_Bold-webfont.woff') format('woff'),
+         url('Archistico_Bold-webfont.ttf') format('truetype'),
+         url('Archistico_Bold-webfont.svg#archisticobold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+

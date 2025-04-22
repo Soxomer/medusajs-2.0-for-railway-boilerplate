@@ -15,17 +15,21 @@
           "nullable": false,
           "mappedType": "text"
         },
-        "email": {
-          "name": "email",
+        "user_type": {
+          "name": "user_type",
           "type": "text",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "mappedType": "text"
+          "enumItems": [
+            "seller",
+            "buyer"
+          ],
+          "mappedType": "enum"
         },
-        "user_type": {
-          "name": "user_type",
+        "email": {
+          "name": "email",
           "type": "text",
           "unsigned": false,
           "autoincrement": false,
@@ -42,8 +46,8 @@
           "nullable": true,
           "mappedType": "text"
         },
-        "link": {
-          "name": "link",
+        "portfolio_link": {
+          "name": "portfolio_link",
           "type": "text",
           "unsigned": false,
           "autoincrement": false,
@@ -59,6 +63,42 @@
           "primary": false,
           "nullable": true,
           "mappedType": "text"
+        },
+        "website_link": {
+          "name": "website_link",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "mappedType": "text"
+        },
+        "other_marketplaces": {
+          "name": "other_marketplaces",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "mappedType": "text"
+        },
+        "features": {
+          "name": "features",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "mappedType": "text"
+        },
+        "test_full_form": {
+          "name": "test_full_form",
+          "type": "jsonb",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "mappedType": "json"
         },
         "contacted": {
           "name": "contacted",

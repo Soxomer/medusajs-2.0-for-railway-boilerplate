@@ -1,9 +1,10 @@
 import { Metadata, Viewport } from "next"
-import "styles/globals.css"
+import "@app/globals.css"
 import Script from "next/script"
 import { getBaseURL } from "@lib/util/env"
 import { PostHogProvider } from "./provider"
 import { ThemeProvider } from "@components/theme-provider"
+import { guakala, scratchyLemon, goodBrush, archistico } from "../styles/fonts"
 
 export const metadata: Metadata = {
   metadataBase: new URL(getBaseURL()),
@@ -87,9 +88,17 @@ export const viewport: Viewport = {
   initialScale: 1,
 }
 
-export default function RootLayout(props: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   return (
-    <html lang="en" data-mode="light">
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`min-h-screen ${guakala.variable} ${scratchyLemon.variable} ${goodBrush.variable} ${archistico.variable}`}
+    >
       <head>
         <Script
           defer
@@ -101,17 +110,18 @@ export default function RootLayout(props: { children: React.ReactNode }) {
           {`window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }`}
         </Script>
       </head>
-      <body>
-        <main className="relative">
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="light"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <PostHogProvider>{props.children}</PostHogProvider>
-          </ThemeProvider>
-        </main>
+      <body
+        suppressHydrationWarning
+        className="relative flex flex-col font-sans text-white dark bg-eg-bg min-h-screen w-full"
+      >
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <PostHogProvider>{children}</PostHogProvider>
+        </ThemeProvider>
       </body>
     </html>
   )

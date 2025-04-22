@@ -1,14 +1,17 @@
 import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
 import { LAUNCH_LIST_MODULE } from "../../../modules/launch-list"
 import LaunchListService from "../../../modules/launch-list/service"
-import { log } from "console"
 
 type LaunchListBody = {
   email: string
   name?: string
-  user_type: "artist" | "collector" | "both"
-  link?: string
+  user_type: "seller" | "buyer"
+  portfolio_link?: string
+  website_link?: string
+  other_marketplaces?: string
+  features?: string
   phone?: string
+  full_form?: LaunchListBody
 }
 
 export async function POST(
@@ -19,14 +22,19 @@ export async function POST(
     LAUNCH_LIST_MODULE
   )
 
-  const { email, name, link, user_type } = req.body
+  const { email, name, portfolio_link, website_link, other_marketplaces, features, user_type, phone, full_form } = req.body
 
   try {
     const entry = await launchListService.createLaunchLists({
       email,
       name,
-      link,
       user_type,
+      portfolio_link,
+      phone,
+      website_link,
+      other_marketplaces,
+      features,
+      test_full_form: full_form,
     })
 
     res.json({
@@ -34,10 +42,7 @@ export async function POST(
     })
   } catch (error) {
     console.log("error", error)
-    res.status(400).json({
-      message: "Failed to join launch list",
-      error: error.message,
-    })
+    res.status(400).json(error)
   }
 }
 
@@ -56,9 +61,6 @@ export async function GET(
       launch_list: entries,
     })
   } catch (error) {
-    res.status(400).json({
-      message: "Failed to get launch list entries",
-      error: error.message,
-    })
+    res.status(400).json(error)
   }
 } 
