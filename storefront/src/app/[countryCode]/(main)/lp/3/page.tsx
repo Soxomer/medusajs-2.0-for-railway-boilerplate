@@ -9,10 +9,10 @@ import { cn } from "@lib/utils"
 
 export default function LandingPage() {
   return (
-    <main className="flex flex-col items-center justify-center px-2 py-4 md:px-4 md:py-8 m-auto bg-eg-bg">
+    <main className="flex flex-col items-center justify-center px-2 py-4 md:px-4 sm:py-8 m-auto bg-eg-bg">
       <div className="max-w-7xl w-full">
         {/* Central Heading - Visible only on small screens at the top */}
-        <h2 className="block xl:hidden text-xl font-serif md:text-2xl lg:text-3xl text-center mb-12">
+        <h2 className="block xl:hidden text-2xl font-serif md:text-3xl lg:text-4xl text-center mb-8 mt-4 ">
           Where Art Thrives Through Community
         </h2>
 
