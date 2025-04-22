@@ -9,17 +9,17 @@ import { cn } from "@lib/utils"
 
 export default function LandingPage() {
   return (
-    <main className="flex flex-col items-center justify-center px-4 py-8 m-auto bg-eg-bg">
+    <main className="flex flex-col items-center justify-center px-2 py-4 md:px-4 md:py-8 m-auto bg-eg-bg">
       <div className="max-w-7xl w-full">
         {/* Central Heading - Visible only on small screens at the top */}
-        <h2 className="block xl:hidden text-3xl font-serif md:text-4xl text-center mb-12">
+        <h2 className="block xl:hidden text-xl font-serif md:text-2xl lg:text-3xl text-center mb-12">
           Where Art Thrives Through Community
         </h2>
 
         {/* Columns Container */}
         <div
-          className="//[&_h3]:not-last:mb-2 //[&_h3]:not-last:md:mb-4 mx-12 mb-12 flex flex-col justify-between
-           gap-12 lg:flex-row [&_h3]:text-center [&_h3]:text-xl [&_h3]:font-normal [&_h3]:italic"
+          className="[&_h3]:not-last:mb-2 [&_h3]:not-last:md:mb-4 mx-4 sm:mx-6 md:mx-12 mb-4 sm:mb-6 md:mb-12 flex flex-col justify-between
+           gap-12 lg:flex-row [&_h3]:text-center [&_h3]:text-sm  md:[&_h3]:text-xl [&_h3]:font-normal [&_h3]:italic"
         >
           {/* Left Column*/}
           <div className="group/anim flex flex-col justify-center items-center m-auto gap-6 w-full ">
@@ -73,7 +73,7 @@ export default function LandingPage() {
                 <span
                   className="
                   font-bold text-center font-archistico
-                  text-2xl text-eg-purple
+                  text-lg sm:text-xl md:text-2xl text-eg-purple
                   skew-x-2 skew-y-2
                   //text-stroke-white
                   group-active:scale-95 group-hover:cursor-pointer 
@@ -104,16 +104,19 @@ export default function LandingPage() {
               </div>
 
               <div
-                className="z-20 md:p-8
-                bg-eg-bg/80 h-min
+                className="z-20 h-min w-full
+                bg-eg-bg/80 backdrop-blur-xs
                 font-serif 
-                [clip-path:polygon(0_3%,100%_0%,100%_100%,0%_97%)]
                 transition-all duration-300
                 perspective-distant
-                backdrop-blur-xs
-                w-full"
+                [clip-path:polygon(0_3%,100%_0%,100%_100%,0%_97%)]
+                md:px-12
+                sm:px-8
+                px-4
+                py-12
+                "
               >
-                <div className="-skew-x-1 -skew-y-1 transition-all duration-300 w-full min-w-fit py-12">
+                <div className="-skew-x-1 -skew-y-1 transition-all duration-300 w-full min-w-fit">
                   <h3>Curated collections</h3>
                   <h3>Limited edition drops</h3>
                   <h3>Quality assurance</h3>
@@ -176,7 +179,7 @@ export default function LandingPage() {
               </button>
             </Link>
 
-            <div className="order-1 group p-12 relative border-8 border-white">
+            <div className="order-1 group p-6 sm:p-8 md:p-12 relative border-8 border-white">
               <div
                 aria-roledescription="Background Image"
                 className="overflow-hidden absolute inset-0 perspective-distant"
@@ -193,16 +196,19 @@ export default function LandingPage() {
               </div>
 
               <div
-                className="w-full z-20 h-min 
-                bg-eg-bg/80 p-6 
-                font-serif 
-                backdrop-blur-xs
+                className="w-full z-20 h-min
+                bg-eg-bg/80 backdrop-blur-xs
+                font-serif
                 transition-all duration-300
                 [clip-path:polygon(0_3%,100%_0%,100%_100%,0%_97%)]
                 perspective-distant
-                md:p-8"
+                md:p-12
+                sm:p-8
+                p-4
+                py-12
+                "
               >
-                <div className="-skew-x-1 -skew-y-1 transition-all duration-300 w-full min-w-fit py-12">
+                <div className="-skew-x-1 -skew-y-1 transition-all duration-300 w-full min-w-fit">
                   <h3>Higher earnings</h3>
                   <h3>Curated Listings</h3>
                   <h3>Prompt challenges</h3>
