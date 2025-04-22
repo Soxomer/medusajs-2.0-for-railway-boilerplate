@@ -8,11 +8,13 @@ export default function WaitlistPage() {
       <main className="flex-1 flex items-center justify-center p-4">
         <div className="container max-w-5xl">
           <div className="grid md:grid-cols-2 gap-8 items-center">
-            <div className="space-y-30">
-              <h2 className="text-3xl md:text-4xl font-bold">
-                Receive info on <br />launch date and exclusive <br />artwork drops
+            <div className="space-y-12 md:space-y-30 text-center md:text-left">
+              <h2 className="text-3xl md:text-4xl font-bold font-serif">
+                Receive info on <br />
+                launch date and exclusive <br />
+                artwork drops
               </h2>
-              <p className="text-lg">
+              <p className="text-lg text-pretty">
                 Join the waitlist to get access to handpicked artworks before
                 anyone else
               </p>
