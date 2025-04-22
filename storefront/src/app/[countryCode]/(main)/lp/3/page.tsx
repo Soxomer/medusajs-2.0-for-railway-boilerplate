@@ -19,7 +19,7 @@ export default function LandingPage() {
         {/* Columns Container */}
         <div
           className="[&_h3]:not-last:mb-2 [&_h3]:not-last:md:mb-4 mx-4 sm:mx-6 md:mx-12 mb-4 sm:mb-6 md:mb-12 flex flex-col justify-between
-           gap-12 lg:flex-row [&_h3]:text-center [&_h3]:text-sm  md:[&_h3]:text-xl [&_h3]:font-normal [&_h3]:italic"
+           gap-12 lg:flex-row [&_h3]:text-center [&_h3]:text-xl  md:[&_h3]:text-2xl lg:[&_h3]:text-3xl [&_h3]:font-normal [&_h3]:italic"
         >
           {/* Left Column*/}
           <div className="group/anim flex flex-col justify-center items-center m-auto gap-6 w-full ">
@@ -87,7 +87,7 @@ export default function LandingPage() {
               </button>
             </Link>
 
-            <div className="order-1 group p-12 relative border-8 border-white ">
+            <div className="order-1 group p-6 sm:p-8 md:p-12 relative border-8 border-white ">
               <div
                 aria-roledescription="Background Image"
                 className="overflow-hidden absolute inset-0 perspective-distant"
