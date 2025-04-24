@@ -10,16 +10,16 @@ import { cn } from "@lib/utils"
 export default function LandingPage() {
   return (
     <main className="flex flex-col items-center justify-center px-2 py-4 md:px-4 sm:py-8 m-auto bg-eg-bg">
-      <div className="max-w-7xl w-full">
+      <div className="max-w-8xl w-full">
         {/* Central Heading - Visible only on small screens at the top */}
-        <h2 className="block xl:hidden text-2xl font-serif md:text-3xl lg:text-4xl text-center mb-8 mt-4 ">
+        <h2 className="block xl:hidden text-2xl font-serif md:text-3xl lg:text-4xl text-center mb-8 mt-4">
           Where Art Thrives Through Community
         </h2>
 
         {/* Columns Container */}
         <div
           className="[&_h3]:not-last:mb-2 [&_h3]:not-last:md:mb-4 mx-4 sm:mx-6 md:mx-12 mb-4 sm:mb-6 md:mb-12 flex flex-col justify-between
-           gap-12 lg:flex-row [&_h3]:text-center [&_h3]:text-xl  md:[&_h3]:text-2xl lg:[&_h3]:text-3xl [&_h3]:font-normal [&_h3]:italic"
+           gap-12 lg:flex-row [&_h3]:text-center [&_h3]:text-xl  md:[&_h3]:text-2xl [&_h3]:font-normal [&_h3]:italic"
         >
           {/* Left Column*/}
           <div className="group/anim flex flex-col justify-center items-center m-auto gap-6 w-full ">
@@ -110,7 +110,7 @@ export default function LandingPage() {
                 transition-all duration-300
                 perspective-distant
                 [clip-path:polygon(0_3%,100%_0%,100%_100%,0%_97%)]
-                md:px-12
+                md:px-10
                 sm:px-8
                 px-4
                 py-12
@@ -196,15 +196,15 @@ export default function LandingPage() {
               </div>
 
               <div
-                className="w-full z-20 h-min
+                className="z-20 h-min w-full
                 bg-eg-bg/80 backdrop-blur-xs
-                font-serif
+                font-serif 
                 transition-all duration-300
-                [clip-path:polygon(0_3%,100%_0%,100%_100%,0%_97%)]
                 perspective-distant
-                md:p-12
-                sm:p-8
-                p-4
+                [clip-path:polygon(0_3%,100%_0%,100%_100%,0%_97%)]
+                md:px-9
+                sm:px-8
+                px-4
                 py-12
                 "
               >
