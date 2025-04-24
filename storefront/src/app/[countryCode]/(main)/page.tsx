@@ -1,14 +1,6 @@
 "use client"
+import LP3 from "./lp/3/page"
 
-import { useEffect } from "react"
-import { useRouter } from "next/navigation"
-
-export default function LandingPage() {
-  const router = useRouter()
-
-  useEffect(() => {
-    router.replace("/lp/3")
-  }, [router])
-
-  return null
+export default function Page() {
+  return <LP3 />
 }
